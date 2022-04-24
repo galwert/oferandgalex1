@@ -137,12 +137,24 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
   return nullptr;
 }
 
-
-
 void SmallShell::executeCommand(const char *cmd_line) {
-  // TODO: Add your implementation here
-  // for example:
-  // Command* cmd = CreateCommand(cmd_line);
-  // cmd->execute();
+  Command* cmd = CreateCommand(cmd_line);
+  cmd->execute();
   // Please note that you must fork smash process for some commands (e.g., external commands....)
+}
+
+Command::Command(const char* cmd_line) : cmd_line(cmd_line) {
+  char* args_array[COMMAND_ARGS_MAX_LENGTH];
+  num_of_args = _parseCommandLine(cmd_line, args_array);
+  for (int i = 0; i < num_of_args; ++i) {
+    arguments[i] = args_array[i];
+  }
+  // SmallShell::getInstance().cmd_line = cmd_line;
+}
+
+Command::~Command() {
+  for (int i = 0; i < num_of_args; ++i) {
+    delete[] args[i];
+  }
+  // SmallShell::getInstance().fg_pid = EMPTY_FG;
 }
