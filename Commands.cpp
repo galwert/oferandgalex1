@@ -140,3 +140,14 @@ void SmallShell::executeCommand(const char *cmd_line) {
   // cmd->execute();
   // Please note that you must fork smash process for some commands (e.g., external commands....)
 }
+
+void ChangePrompt::execute() {
+    if(strcmp(this->arguments[0],"")==0) {
+        SmallShell::getInstance().prompt="smash";
+    }
+    else
+    {
+        SmallShell::getInstance().prompt=this->arguments[0];
+    }
+}
+

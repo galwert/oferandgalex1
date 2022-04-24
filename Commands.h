@@ -7,10 +7,11 @@
 #define COMMAND_MAX_ARGS (20)
 
 class Command {
+ public:
     char* cmd_line;
     int num_of_args;
     char** arguments;
- public:
+
   Command(const char* cmd_line);
   virtual ~Command();
   virtual void execute() = 0;
@@ -21,8 +22,11 @@ class Command {
 
 class BuiltInCommand : public Command {
  public:
-  BuiltInCommand(const char* cmd_line);
-  virtual ~BuiltInCommand() {}
+  BuiltInCommand(const char* cmd_line): Command(cmd_line)
+  {
+
+  }
+  virtual ~BuiltInCommand()=default;
 };
 
 class ExternalCommand : public Command {
@@ -51,22 +55,55 @@ class RedirectionCommand : public Command {
 };
 
 class ChangeDirCommand : public BuiltInCommand {
-// TODO: Add your data members public:
-  ChangeDirCommand(const char* cmd_line, char** plastPwd);
+public:
+    std::string newdir;
+  ChangeDirCommand(const char* cmd_line, char** plastPwd): BuiltInCommand(cmd_line)
+  {
+      if(this->num_of_args>=2)
+      {
+          std::cerr<<"smash error: cd: too many arguments";
+          return;
+      }
+      if(strcmp(this->arguments[1],"-")==0)
+      {
+          if(strcmp(*plastPwd,"")==0)
+          {
+              std::cerr<<"smash error: cd: OLDPWD not set";
+              return;
+          }
+          else
+          {
+              newdir=*plastPwd;
+          }
+      }
+      else
+      {
+          newdir=this->arguments[1];
+      }
+      if(chdir(newdir.c_str())==-1)
+      {
+          //perror("")
+      }
+  }
   virtual ~ChangeDirCommand() {}
   void execute() override;
 };
 
 class ChangePrompt : public BuiltInCommand {
 // TODO: Add your data members public:
-    ChangePrompt(const char* cmd_line);
-    virtual ~ChangePrompt() {}
+    ChangePrompt(const char* cmd_line): BuiltInCommand(cmd_line)
+    {
+
+    }
+    virtual ~ChangePrompt()=default;
     void execute() override;
+
 };
 class GetCurrDirCommand : public BuiltInCommand {
  public:
-  GetCurrDirCommand(const char* cmd_line);
-  virtual ~GetCurrDirCommand() {}
+  explicit GetCurrDirCommand(const char* cmd_line): BuiltInCommand(cmd_line)
+  {}
+  virtual ~GetCurrDirCommand()=default;
   void execute() override;
 };
 
@@ -161,13 +198,14 @@ class TouchCommand : public BuiltInCommand {
 
 class SmallShell {
  private:
+
+  SmallShell();
+ public:
     std::string last_prompt;
     std::string prompt;
     JobsList jobsList;
     std::string last_working_directory;
     std::string current_working_directory;
-  SmallShell();
- public:
   Command *CreateCommand(const char* cmd_line);
   SmallShell(SmallShell const&)      = delete; // disable copy ctor
   void operator=(SmallShell const&)  = delete; // disable = operator
