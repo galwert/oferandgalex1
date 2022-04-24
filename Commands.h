@@ -63,6 +63,7 @@ class ChangePrompt : public BuiltInCommand {
     virtual ~ChangePrompt() {}
     void execute() override;
 };
+
 class GetCurrDirCommand : public BuiltInCommand {
  public:
   GetCurrDirCommand(const char* cmd_line);

@@ -97,7 +97,13 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
   string cmd_s = _trim(string(cmd_line));
   string firstWord = cmd_s.substr(0, cmd_s.find_first_of(" \n"));
 
-  if (firstWord.compare("chprompt") == 0) {
+  if (firstWord.find(">") == string::npos) {
+    return new RedirectionCommand(cmd_line);
+  }
+  else if (firstWord.find("|") == string::npos) {
+    return new PipeCommand(cmd_line);
+  }
+  else if (firstWord.compare("chprompt") == 0) {
     return new ChangePrompt(cmd_line);
   }
   else if (firstWord.compare("pwd") == 0) {
@@ -131,12 +137,19 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
   return nullptr;
 }
 
-
-
 void SmallShell::executeCommand(const char *cmd_line) {
   // TODO: Add your implementation here
   // for example:
   // Command* cmd = CreateCommand(cmd_line);
   // cmd->execute();
   // Please note that you must fork smash process for some commands (e.g., external commands....)
+}
+
+Command::Command(const char* cmd_line) : cmd_line(cmd_line) {
+  char* args_array[COMMAND_ARGS_MAX_LENGTH];
+  num_of_args = _parseCommandLine(cmd_line, );
+  for (int i = 0; i < num_of_args; ++i) {
+    arguments[i] = args_array[i];
+  }
+  // SmallShell::getInstance().cmd_line = cmd_line;
 }
