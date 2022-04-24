@@ -7,7 +7,9 @@
 #define COMMAND_MAX_ARGS (20)
 
 class Command {
-// TODO: Add your data members
+    char* cmd_line;
+    int num_of_args;
+    char** arguments;
  public:
   Command(const char* cmd_line);
   virtual ~Command();
@@ -55,6 +57,12 @@ class ChangeDirCommand : public BuiltInCommand {
   void execute() override;
 };
 
+class ChangePrompt : public BuiltInCommand {
+// TODO: Add your data members public:
+    ChangePrompt(const char* cmd_line);
+    virtual ~ChangePrompt() {}
+    void execute() override;
+};
 class GetCurrDirCommand : public BuiltInCommand {
  public:
   GetCurrDirCommand(const char* cmd_line);
@@ -83,9 +91,13 @@ class QuitCommand : public BuiltInCommand {
 class JobsList {
  public:
   class JobEntry {
-   // TODO: Add your data members
+  int pid;
+  int jobid;
+  bool is_bg;
+  bool is_running;
+  char * discript;
   };
- // TODO: Add your data members
+ std::vector<JobEntry *> List ;
  public:
   JobsList();
   ~JobsList();
@@ -149,7 +161,11 @@ class TouchCommand : public BuiltInCommand {
 
 class SmallShell {
  private:
-  // TODO: Add your data members
+    std::string last_prompt;
+    std::string prompt;
+    JobsList jobsList;
+    std::string last_working_directory;
+    std::string current_working_directory;
   SmallShell();
  public:
   Command *CreateCommand(const char* cmd_line);
