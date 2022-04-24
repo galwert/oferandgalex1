@@ -10,8 +10,6 @@
 #include <utime.h>
 
 
-#define MAX_LINE_LENGTH = 80;
-
 using namespace std;
 
 #if 0
@@ -96,7 +94,8 @@ SmallShell::~SmallShell() {
 * Creates and returns a pointer to Command class which matches the given command line (cmd_line)
 */
 Command * SmallShell::CreateCommand(const char* cmd_line) {
-bool bg_commend= _isBackgroundComamnd(cmd_line);
+	// For example:
+/*
   string cmd_s = _trim(string(cmd_line));
   string firstWord = cmd_s.substr(0, cmd_s.find_first_of(" \n"));
 
@@ -106,97 +105,12 @@ bool bg_commend= _isBackgroundComamnd(cmd_line);
   else if (firstWord.compare("showpid") == 0) {
     return new ShowPidCommand(cmd_line);
   }
-  else if (firstWord.compare("cd") == 0) {
-      string secondWord = cmd_s.substr(firstWord.length(), cmd_s.find_first_of(" \n"));
-      string secondWord_s = _trim(string(secondWord));
-      if (secondWord_s == "-") {
-          if(last_working_directory.empty()) {
-              //smash error: cd: OLDPWD not set
-              return nullptr;
-          }
-          chdir(this->last_working_directory.c_str());
-      }
-      else {
-          chdir(secondWord_s.c_str());
-          this->last_working_directory=secondWord_s;
-      }
-      return nullptr;
-  }
-      else if (firstWord == "chprompt") {
-        string secondWord = cmd_s.substr(firstWord.length(), cmd_s.find_first_of(" \n"));
-        string secondWord_s = _trim(string(secondWord));
-        this->SetPrompt(secondWord_s);
-        return nullptr;
-    }
-  else if (firstWord == "jobs") {
-      this->jobsList.printJobsList();
-      return nullptr;
-  }
-  else if (firstWord == "kill") {
-      //i think we should do a kind of scnaf//
-      return nullptr;
-  }
-  else if (firstWord == "fg") {
-      string secondWord = cmd_s.substr(firstWord.length(), cmd_s.find_first_of(" \n"));
-      string secondWord_s = _trim(string(secondWord));
-      if(secondWord_s.empty()) {
-          if(this->jobsList.max_job_id==0)
-          {
-              //need to put error smash error: bg: there is no stopped jobs to resume
-          }
-          else {
-              //send sigcont to the max job id and get new job maximum.
-          }
-      }
-      else {
-          int job_id = stoi(secondWord_s); //not sure what happens when stoi fails. need to put smash error: bg: invalid arguments
-          if (this->jobsList.jobs[job_id] == nullptr) {
-               //need put error smash error: fg: job-id <job-id> does not exist
-          }
-          else {
-              //send sigcont to the job id
-          }
-      }
-      return nullptr;
-  }
-  else if (firstWord == "bg") {
-      string secondWord = cmd_s.substr(firstWord.length(), cmd_s.find_first_of(" \n"));
-      string secondWord_s = _trim(string(secondWord));
-      if(secondWord_s.empty()) {
-          if(this->jobsList.max_job_id==0)
-          {
-              //need to put error smash error: fg: jobs list is empty
-          }
-          else {
-              //send sigcont to the max job id and get new job maximum.
-          }
-      }
-      else {
-          int job_id = stoi(secondWord_s); //not sure what happens when stoi fails. need to put smash error: fg: invalid arguments
-          if (this->jobsList.jobs[job_id] == nullptr) {
-              //need put error smash error: bg: job-id <job-id> does not exist
-          }
-          else {
-              if (this->jobsList.jobs[job_id] == nullptr)
-              {}
-              //send sigcont to the job id
-          }
-      }
-      return nullptr;
-  }
-  else if (firstWord == "quit") {
-      string secondWord = cmd_s.substr(firstWord.length(), cmd_s.find_first_of(" \n"));
-      string secondWord_s = _trim(string(secondWord));
-      if(secondWord_s=="kill")
-      {
-            //for (int i=0;...
-      }
-      exit(0);
-  }
+  else if ...
+  .....
   else {
     return new ExternalCommand(cmd_line);
   }
-
+  */
   return nullptr;
 }
 
@@ -204,22 +118,6 @@ void SmallShell::executeCommand(const char *cmd_line) {
   // TODO: Add your implementation here
   // for example:
   // Command* cmd = CreateCommand(cmd_line);
-  //if(cmd!=nullptr)
-   // {
-        // cmd->execute();
-    //}
+  // cmd->execute();
   // Please note that you must fork smash process for some commands (e.g., external commands....)
-}
-
-void GetCurrDirCommand::execute() {
-    char buf[80];
-    std::cout <<getcwd(buf,80);
-}
-
-
-void ShowPidCommand::execute() {
-std::cout<<"smash pid is "<<getpid();
-}
-
-
 }

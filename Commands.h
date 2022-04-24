@@ -1,7 +1,6 @@
 #ifndef SMASH_COMMAND_H_
 #define SMASH_COMMAND_H_
 
-#include <utility>
 #include <vector>
 
 #define COMMAND_ARGS_MAX_LENGTH (200)
@@ -9,10 +8,7 @@
 
 class Command {
 // TODO: Add your data members
-
-
  public:
-
   Command(const char* cmd_line);
   virtual ~Command();
   virtual void execute() = 0;
@@ -28,14 +24,7 @@ class BuiltInCommand : public Command {
 };
 
 class ExternalCommand : public Command {
-private:
-    int job_id;
-    int pid;
-    bool status;
-    std::string discription;
-    bool is_back_ground;
  public:
-
   ExternalCommand(const char* cmd_line);
   virtual ~ExternalCommand() {}
   void execute() override;
@@ -61,34 +50,22 @@ class RedirectionCommand : public Command {
 
 class ChangeDirCommand : public BuiltInCommand {
 // TODO: Add your data members public:
-private:
-    char* change;
-public:
-  ChangeDirCommand(const char* cmd_line, char* change): BuiltInCommand(cmd_line), change(change)
-  {
-
-  }
-  ~ChangeDirCommand() override = default;
+  ChangeDirCommand(const char* cmd_line, char** plastPwd);
+  virtual ~ChangeDirCommand() {}
   void execute() override;
 };
 
 class GetCurrDirCommand : public BuiltInCommand {
  public:
-  explicit GetCurrDirCommand(const char *cmd_line): BuiltInCommand(cmd_line)
-  {
-
-  }
-  virtual ~GetCurrDirCommand() =default;
+  GetCurrDirCommand(const char* cmd_line);
+  virtual ~GetCurrDirCommand() {}
   void execute() override;
-  };
+};
 
 class ShowPidCommand : public BuiltInCommand {
  public:
-  explicit ShowPidCommand(const char* cmd_line): BuiltInCommand(cmd_line)
-  {
-
-  }
-  ~ShowPidCommand() override = default;
+  ShowPidCommand(const char* cmd_line);
+  virtual ~ShowPidCommand() {}
   void execute() override;
 };
 
@@ -108,8 +85,6 @@ class JobsList {
   class JobEntry {
    // TODO: Add your data members
   };
-  std::vector<Command *> jobs;
-  int max_job_id;
  // TODO: Add your data members
  public:
   JobsList();
@@ -175,27 +150,8 @@ class TouchCommand : public BuiltInCommand {
 class SmallShell {
  private:
   // TODO: Add your data members
-  std::string last_prompt;
-    std::string prompt;
-    JobsList jobsList;
-    std::string last_working_directory;
-    std::string current_working_directory;
   SmallShell();
  public:
-    std::string getPrompt()
-    {
-        return prompt;
-    }
-    std::string SetPrompt(std::string prompt)
-    {
-        if(prompt=="")
-        {
-            this->prompt="smash";
-        }
-        else {
-            this->prompt = prompt;
-        }
-    }
   Command *CreateCommand(const char* cmd_line);
   SmallShell(SmallShell const&)      = delete; // disable copy ctor
   void operator=(SmallShell const&)  = delete; // disable = operator
