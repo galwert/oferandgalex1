@@ -99,6 +99,7 @@ class ChangePrompt : public BuiltInCommand {
     void execute() override;
 
 };
+
 class GetCurrDirCommand : public BuiltInCommand {
  public:
   explicit GetCurrDirCommand(const char* cmd_line): BuiltInCommand(cmd_line)
