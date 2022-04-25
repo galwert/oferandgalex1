@@ -6,6 +6,7 @@
 #define COMMAND_ARGS_MAX_LENGTH (200)
 #define COMMAND_MAX_ARGS (20)
 
+#define MAX_NUM_OF_JOBS
 #define NOT_EXIST_IN_LIST
 #define EMPTY_FG
 

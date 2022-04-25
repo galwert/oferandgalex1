@@ -213,3 +213,45 @@ void ShowPidCommand::execute() {
     SmallShell& smash = SmallShell::getInstance();
     cout << "smash pid is " << smash.pid << endl;
 }
+
+GetCurrDirCommand::GetCurrDirCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
+
+void ShowPidCommand::execute() {
+    SmallShell& smash = SmallShell::getInstance();
+    char* dir = get_current_dir_name(); //change to getcwd?
+    if (dir != nullptr) {
+        cout << dir << endl;
+        delete dir;
+    }
+    else {
+        perror("smash error: get_current_dir_name failed");
+    }
+}
+
+QuitCommand::QuitCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
+
+void QuitCommand::execute() {
+    std::vector<JobList::JobEntry*>* list = SmallShell::getInstance().jobsList; 
+    JobList::JobEntry current_job;
+    int counter = 0;
+    if (strcmp(this->arguments[1],"kill") == 0) {
+        for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+            current_job = list->at(i);
+            if (current_job) {
+                counter++;
+            }
+        }
+        cout << "sending SIGKILL signal to" << counter << "jobs:" << endl;
+        for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+            current_job = list->at(i);
+            if (current_job) {
+                cout << "sending SIGKILL signal to" << counter << "jobs:" << endl; //fix    
+            }
+        }
+    }
+    
+    for () {
+
+    }
+    exit(0);
+}
