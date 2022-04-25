@@ -110,11 +110,14 @@ class QuitCommand : public BuiltInCommand {
 class JobsList {
 public:
     class JobEntry {
-        int pid;
-        int jobid;
-        bool is_bg;
-        bool is_running;
-        char * discript;
+        public:
+            int job_pid;
+            int job_id;
+            char* job_status;
+            char* cmd_discription;
+            long long insertion_time;
+            
+            JobEntry() : job_status("bg"), job_pid(0) ,insertion_time(0) {}
     };
     std::vector<JobEntry *> List ;
 public:

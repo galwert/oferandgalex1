@@ -7,7 +7,7 @@
 #include <iomanip>
 #include "Commands.h"
 #include <time.h>
-#include <utime.h>
+// #include <utime.h>
 
 
 using namespace std;
@@ -231,7 +231,7 @@ void ShowPidCommand::execute() {
 QuitCommand::QuitCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
 
 void QuitCommand::execute() {
-    std::vector<JobList::JobEntry*>* list = SmallShell::getInstance().jobsList; 
+    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList; 
     JobList::JobEntry current_job;
     int counter = 0;
     if (strcmp(this->arguments[1],"kill") == 0) {
@@ -241,17 +241,48 @@ void QuitCommand::execute() {
                 counter++;
             }
         }
-        cout << "sending SIGKILL signal to" << counter << "jobs:" << endl;
-        for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
-            current_job = list->at(i);
-            if (current_job) {
-                cout << "sending SIGKILL signal to" << counter << "jobs:" << endl; //fix    
-            }
-        }
-    }
-    
-    for () {
-
+        cout << "sending SIGKILL signal to " << counter << " jobs:" << endl;
+        SmallShell::getInstance().jobsList.killAllJobs();
     }
     exit(0);
+}
+
+JobsList::killAllJobs() {
+    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList; 
+    JobList::JobEntry current_job;
+    for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+        current_job = list->at(i);
+        if (current_job) {
+            cout << current_job.pid << ": " << current_job.cmd_description << endl;
+        }
+}
+
+void JobsList::addJob(Command* cmd, bool isStopped) {
+    removeFinishedJobs();
+    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList;
+    int max_job_id = 0;
+    for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+        current_job = list->at(i);
+        if (current_job) {
+            max_job_id = (max_job_id < current_job.job_id) ? current_job.job_id;
+        }
+    }
+    int job_id = list->empty() ? 1 : (max_job_id + 1);
+    list->at(job_id) = new JobEntry();
+    list->at(job_id)->job_pid = pid; //which pid?
+    list->at(job_id)->command_description = cmd;
+    list->at(job_id)->status = isStopped ? "stopped" : "bg";
+    list->at(job_id)->insertion_time = time(nullptr);
+}
+
+// void JobList::resumeJob()
+
+void JobList::removeFinishedJobs() {
+    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList;
+    for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+        current_job = list->at(i);
+        if (waitpid(current_job.job_pid, nullptr, WNOHANG) == current_job.job_pid) { //error handling??
+            list->erase(current_job)
+        }
+    }
 }
