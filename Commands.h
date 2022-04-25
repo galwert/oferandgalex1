@@ -6,6 +6,9 @@
 #define COMMAND_ARGS_MAX_LENGTH (200)
 #define COMMAND_MAX_ARGS (20)
 
+#define NOT_EXIST_IN_LIST
+#define EMPTY_FG
+
 class Command {
 public:
     const char* cmd_line;
@@ -184,6 +187,13 @@ public:
     JobsList jobsList;
     std::string last_working_directory;
     std::string current_working_directory;
+    int fg_pid;
+    int fg_job_id;
+    bool redirect_mode;
+    bool append_mode;
+    bool pipe_mode;
+    std::string command1;
+    std::string command2;
     Command *CreateCommand(const char * cmd_line);
     SmallShell(SmallShell const&)      = delete; // disable copy ctor
     void operator=(SmallShell const&)  = delete; // disable = operator
