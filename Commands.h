@@ -187,8 +187,9 @@ public:
     JobsList jobsList;
     std::string last_working_directory;
     std::string current_working_directory;
-    int fg_pid;
-    int fg_job_id;
+    int pid; //the pid of smash
+    int fg_pid; //the pid of foreground process
+    int fg_job_id; //the job id of foreground process
     bool redirect_mode;
     bool append_mode;
     bool pipe_mode;

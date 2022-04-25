@@ -173,23 +173,27 @@ void ChangePrompt::execute() {
 }
 
 
-ChangeDirCommand::ChangeDirCommand(const char* cmd_line): BuiltInCommand(cmd_line)
+ChangeDirCommand::ChangeDirCommand(const char* cmd_line): BuiltInCommand(cmd_line) {}
+
+ChangeDirCommand::execute()
 {
+    SmallShell& smash = SmallShell::getInstance();
     if(this->num_of_args>=2)
     {
         std::cerr<<"smash error: cd: too many arguments";
         return;
     }
+    char* new_prev_dir = get_current_dir_name();
     if(strcmp(this->arguments[1],"-")==0)
     {
-        if(SmallShell::getInstance().last_working_directory.empty())
+        if(smash.last_working_directory.empty())
         {
             std::cerr<<"smash error: cd: OLDPWD not set";
             return;
         }
         else
         {
-            newdir=SmallShell::getInstance().last_working_directory;
+            newdir=smash.last_working_directory;
         }
     }
     else
@@ -198,6 +202,14 @@ ChangeDirCommand::ChangeDirCommand(const char* cmd_line): BuiltInCommand(cmd_lin
     }
     if(chdir(newdir.c_str())==-1)
     {
-        //perror("")
+        perror("smash error: chdir failed");
     }
+    smash.last_working_directory = new_prev_dir;
+}
+
+ShowPidCommand::ShowPidCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
+
+void ShowPidCommand::execute() {
+    SmallShell& smash = SmallShell::getInstance();
+    cout << "smash pid is " << smash.pid << endl;
 }
