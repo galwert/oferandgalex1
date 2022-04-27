@@ -113,7 +113,7 @@ public:
         public:
             int job_pid;
             int job_id;
-            char* job_status;
+            char* job_status; //change to Enum
             char* cmd_discription;
             long long insertion_time;
             

@@ -260,19 +260,24 @@ JobsList::killAllJobs() {
 void JobsList::addJob(Command* cmd, bool isStopped) {
     removeFinishedJobs();
     std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList;
-    int max_job_id = 0;
+    int max_job_id = getLastJob(//add relevant arg);
+    int job_id = list->empty() ? 1 : (max_job_id + 1);
+    list->at(job_id) = new JobEntry();
+    list->at(job_id)->job_pid = pid; //which pid?
+    list->at(job_id)->command_description = cmd;
+    list->at(job_id)->job_status = isStopped ? "stopped" : "bg";
+    list->at(job_id)->insertion_time = time(nullptr); //add stop_time
+}
+
+JobEntry * JobList::getLastJob(int* lastJobId) {
+    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList;
     for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
         if (current_job) {
             max_job_id = (max_job_id < current_job.job_id) ? current_job.job_id;
         }
     }
-    int job_id = list->empty() ? 1 : (max_job_id + 1);
-    list->at(job_id) = new JobEntry();
-    list->at(job_id)->job_pid = pid; //which pid?
-    list->at(job_id)->command_description = cmd;
-    list->at(job_id)->status = isStopped ? "stopped" : "bg";
-    list->at(job_id)->insertion_time = time(nullptr);
+    return max_job_id; //change return value type to int
 }
 
 // void JobList::resumeJob()
@@ -282,7 +287,7 @@ void JobList::removeFinishedJobs() {
     for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
         if (waitpid(current_job.job_pid, nullptr, WNOHANG) == current_job.job_pid) { //error handling??
-            list->erase(current_job)
+            list->erase(current_job);
         }
     }
 }
