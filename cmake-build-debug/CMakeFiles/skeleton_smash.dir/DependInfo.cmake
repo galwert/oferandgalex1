@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/Commands.cpp" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug/CMakeFiles/skeleton_smash.dir/Commands.cpp.o"
-  "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/signals.cpp" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug/CMakeFiles/skeleton_smash.dir/signals.cpp.o"
-  "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/smash.cpp" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug/CMakeFiles/skeleton_smash.dir/smash.cpp.o"
+  "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/Commands.cpp" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles/skeleton_smash.dir/Commands.cpp.o"
+  "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/signals.cpp" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles/skeleton_smash.dir/signals.cpp.o"
+  "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/smash.cpp" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles/skeleton_smash.dir/smash.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
