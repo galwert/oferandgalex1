@@ -6,9 +6,9 @@
 #define COMMAND_ARGS_MAX_LENGTH (200)
 #define COMMAND_MAX_ARGS (20)
 
-#define MAX_NUM_OF_JOBS
-#define NOT_EXIST_IN_LIST
-#define EMPTY_FG
+#define MAX_NUM_OF_JOBS 100
+#define NOT_EXIST_IN_LIST -1
+#define EMPTY_FG -1
 
 class Command {
 public:
@@ -67,27 +67,21 @@ public:
 };
 
 class ChangePrompt : public BuiltInCommand {
+public:
     virtual ~ChangePrompt()=default;
     void execute() override;
 
-public:
-// TODO: Add your data members public:
-    explicit ChangePrompt(const char* cmd_line): BuiltInCommand(cmd_line)
-    {
 
-    }
+// TODO: Add your data members public:
+    explicit ChangePrompt(const char* cmd_line)
+
 };
 
 class GetCurrDirCommand : public BuiltInCommand {
 public:
-    explicit GetCurrDirCommand(const char* cmd_line): BuiltInCommand(cmd_line)
-    {}
+    explicit GetCurrDirCommand(const char* cmd_line);
     virtual ~GetCurrDirCommand()=default;
-    void execute() override
-    {
-        char buf[80];
-        std::cout <<getcwd(buf,80);
-    }
+    void execute() override;
 };
 
 class ShowPidCommand : public BuiltInCommand {
@@ -99,45 +93,51 @@ public:
 
 class JobsList;
 class QuitCommand : public BuiltInCommand {
-// TODO: Add your data members public:
-    QuitCommand(const char* cmd_line, JobsList* jobs);
+public:
+    QuitCommand(const char* cmd_line);
     virtual ~QuitCommand() {}
     void execute() override;
 };
 
 
-
+enum JobStatus{bg=0, stopped=1};
 class JobsList {
 public:
     class JobEntry {
-        public:
-            int job_pid;
-            int job_id;
-            char* job_status; //change to Enum
-            char* cmd_discription;
-            long long insertion_time;
-            
-            JobEntry() : job_status("bg"), job_pid(0) ,insertion_time(0) {}
+    public:
+        int job_pid;
+        int jobid;
+        JobStatus job_status;
+        const char * discript;
+        time_t insert_time;
+        time_t stopped_time;
+        //JobEntry(Command* cmd, int pid,JobStatus isStopped);
+        JobEntry()= default;
+        void StopJob();
+        void ContinueJob();
     };
-    std::vector<JobEntry *> List ;
+    std::vector<JobEntry *>* List ;
 public:
-    JobsList();
+    JobsList(): List(new std::vector<JobEntry *>)
+    {}
     ~JobsList();
-    void addJob(Command* cmd, bool isStopped = false);
+    void addJob(Command* cmd,int pid, JobStatus isStopped);
     void printJobsList();
     void killAllJobs();
     void removeFinishedJobs();
     JobEntry * getJobById(int jobId);
+    JobEntry * getJobByPid(int pid);
     void removeJobById(int jobId);
-    JobEntry * getLastJob(int* lastJobId);
-    JobEntry *getLastStoppedJob(int *jobId);
+
+    int getLastJob();
+    int getLastStoppedJob();
     // TODO: Add extra methods or modify exisitng ones as needed
 };
 
 class JobsCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
-    JobsCommand(const char* cmd_line, JobsList* jobs);
+    JobsCommand(const char* cmd_line);
     virtual ~JobsCommand() {}
     void execute() override;
 };
@@ -145,7 +145,7 @@ public:
 class KillCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
-    KillCommand(const char* cmd_line, JobsList* jobs);
+    explicit KillCommand(const char* cmd_line);
     virtual ~KillCommand() {}
     void execute() override;
 };
@@ -153,16 +153,16 @@ public:
 class ForegroundCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
-    ForegroundCommand(const char* cmd_line, JobsList* jobs);
-    virtual ~ForegroundCommand() {}
+    explicit ForegroundCommand(const char* cmd_line);
+    virtual ~ForegroundCommand()=default;
     void execute() override;
 };
 
 class BackgroundCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
-    BackgroundCommand(const char* cmd_line, JobsList* jobs);
-    virtual ~BackgroundCommand() {}
+    explicit BackgroundCommand(const char* cmd_line);
+    virtual ~BackgroundCommand()=default;
     void execute() override;
 };
 
@@ -193,12 +193,13 @@ public:
     std::string current_working_directory;
     int pid; //the pid of smash
     int fg_pid; //the pid of foreground process
-    int fg_job_id; //the job id of foreground process
+    //int fg_job_id; //the job id of foreground process
     bool redirect_mode;
     bool append_mode;
     bool pipe_mode;
     std::string command1;
     std::string command2;
+    Command* curr_cmd;
     Command *CreateCommand(const char * cmd_line);
     SmallShell(SmallShell const&)      = delete; // disable copy ctor
     void operator=(SmallShell const&)  = delete; // disable = operator

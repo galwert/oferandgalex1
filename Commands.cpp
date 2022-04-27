@@ -172,10 +172,24 @@ void ChangePrompt::execute() {
     }
 }
 
+ChangePrompt::ChangePrompt(const char *cmd_line) : BuiltInCommand(cmd_line)
+{
+
+    SmallShell& smash = SmallShell::getInstance();
+    if(strcmp(this->arguments[1],"")==0)
+    {
+
+        smash.prompt="smash";
+    }
+    else
+    {
+        smash.prompt=this->arguments[1];
+    }
+}
 
 ChangeDirCommand::ChangeDirCommand(const char* cmd_line): BuiltInCommand(cmd_line) {}
 
-ChangeDirCommand::execute()
+void ChangeDirCommand::execute()
 {
     SmallShell& smash = SmallShell::getInstance();
     if(this->num_of_args>=2)
@@ -214,9 +228,73 @@ void ShowPidCommand::execute() {
     cout << "smash pid is " << smash.pid << endl;
 }
 
+void JobsList::printJobsList() {
+    JobEntry* curr_job;
+    removeFinishedJobs();
+for(int i=0;i<100;i++)
+{
+    curr_job=this->List->at(i);
+    std::cout<<"["<<i<<"]"<< curr_job->discript<<" : ";
+    if(curr_job->job_status==bg)
+    {
+        std::cout<<difftime(curr_job->insert_time, time(nullptr))<< " secs";
+    }
+    else
+    {
+        std::cout<<difftime(curr_job->stopped_time, time(nullptr))<< " secs (stopped)";
+    }
+
+}
+}
+
+
+int JobsList::getLastJob() {
+    int max=-1;
+    for(int i=0;i<MAX_NUM_OF_JOBS;i++) {
+        JobEntry *curr_job = this->List->at(i);
+        if(curr_job!= nullptr)
+        {
+            max=i;
+        }
+    }
+    return max;
+}
+
+int JobsList::getLastStoppedJob() {
+    int max=0;
+    for(int i=0;i<100;i++) {
+        JobEntry *curr_job = this->List->at(i);
+        if(curr_job!= nullptr&&curr_job->job_status==stopped)
+        {
+            max=i;
+        }
+    }
+    return max;
+}
+
+
+//JobsList::JobEntry::JobEntry(Command *cmd,int pid,JobStatus isStopped) {
+//    this->job_pid=pid;
+//    this->discript=cmd->cmd_line;
+//    this->job_status=isStopped;
+//    this->insert_time= time(nullptr);
+//    this->stopped_time= time(nullptr);
+//
+//}
+
+void JobsList::JobEntry::StopJob() {
+    this->job_status=stopped;
+    this->stopped_time=time(nullptr);
+
+}
+
+void JobsList::JobEntry::ContinueJob() {
+    this->job_status=bg;
+}
+
 GetCurrDirCommand::GetCurrDirCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
 
-void ShowPidCommand::execute() {
+void GetCurrDirCommand::execute() {
     SmallShell& smash = SmallShell::getInstance();
     char* dir = get_current_dir_name(); //change to getcwd?
     if (dir != nullptr) {
@@ -231,8 +309,8 @@ void ShowPidCommand::execute() {
 QuitCommand::QuitCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
 
 void QuitCommand::execute() {
-    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList; 
-    JobList::JobEntry current_job;
+    std::vector<JobsList::JobEntry*>* list = SmallShell::getInstance().jobsList.List;
+    JobsList::JobEntry* current_job;
     int counter = 0;
     if (strcmp(this->arguments[1],"kill") == 0) {
         for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
@@ -247,47 +325,168 @@ void QuitCommand::execute() {
     exit(0);
 }
 
-JobsList::killAllJobs() {
-    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList; 
-    JobList::JobEntry current_job;
+void JobsList::killAllJobs() {
+    std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
+    JobsList::JobEntry* current_job;
     for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
         if (current_job) {
-            cout << current_job.pid << ": " << current_job.cmd_description << endl;
+            cout << current_job->job_pid << ": " << current_job->discript << endl;
         }
+    }
 }
 
-void JobsList::addJob(Command* cmd, bool isStopped) {
+void JobsList::addJob(Command* cmd,int pid, JobStatus isStopped) {
     removeFinishedJobs();
-    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList;
-    int max_job_id = getLastJob(//add relevant arg);
+    std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
+    int max_job_id = getLastJob();
     int job_id = list->empty() ? 1 : (max_job_id + 1);
     list->at(job_id) = new JobEntry();
     list->at(job_id)->job_pid = pid; //which pid?
-    list->at(job_id)->command_description = cmd;
-    list->at(job_id)->job_status = isStopped ? "stopped" : "bg";
-    list->at(job_id)->insertion_time = time(nullptr); //add stop_time
+    list->at(job_id)->discript = cmd->cmd_line;
+    list->at(job_id)->job_status=isStopped;
+    list->at(job_id)->insert_time = time(nullptr); //add stop_time
 }
 
-JobEntry * JobList::getLastJob(int* lastJobId) {
-    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList;
+
+// void JobsList::resumeJob()
+
+void JobsList::removeFinishedJobs() {
+    std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
+    JobEntry* current_job;
     for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
-        if (current_job) {
-            max_job_id = (max_job_id < current_job.job_id) ? current_job.job_id;
+        if (waitpid(current_job->job_pid, nullptr, WNOHANG) == current_job->job_pid) { //error handling??
+            list->at(i)= nullptr;
         }
     }
-    return max_job_id; //change return value type to int
 }
 
-// void JobList::resumeJob()
-
-void JobList::removeFinishedJobs() {
-    std::vector<JobList::JobEntry*>& list = SmallShell::getInstance().jobsList;
+JobsList::JobEntry *JobsList::getJobByPid(int pid) {
+    std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
+    JobEntry* current_job;
     for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
-        if (waitpid(current_job.job_pid, nullptr, WNOHANG) == current_job.job_pid) { //error handling??
-            list->erase(current_job);
+        if (pid== current_job->job_pid) {
+            return current_job;
         }
     }
+    return nullptr;
+}
+
+ForegroundCommand::ForegroundCommand(const char *cmd_line): BuiltInCommand(cmd_line) {
+    SmallShell &smash = SmallShell::getInstance();
+    JobsList::JobEntry *job;
+    int job_id;
+    if (strcmp(this->arguments[1], "") == 0) {
+        job_id = smash.jobsList.getLastJob();
+    } else {
+        try {
+            if(this->num_of_args>=2)
+            {
+                throw std::invalid_argument("");
+            }
+            job_id = stoi(this->arguments[1]);
+            if(job_id<0||job_id>100)
+            {
+                throw std::invalid_argument("");
+            }
+        }catch (std::invalid_argument& ia)
+        {
+            std::cout<<"smash error: fg: invalid arguments"<<endl;
+            return;
+        }
+    }
+    if(job_id==-1)
+    {
+        std::cout<<"smash error: fg: jobs list is empty"<<endl;
+    }
+    job = smash.jobsList.getJobById(job_id);
+    if(job== nullptr)
+    {
+        std::cout<<"smash error: fg: job-id "<<job_id<<" does not exist"<<endl;
+    }
+    if (job->job_status == stopped) {
+        kill(job_id, SIGCONT);
+    }
+    cout << job->discript << " : " << job_id << endl;
+    waitpid(job_id, nullptr, 0); //waiting for the son to come home
+
+}
+
+void ForegroundCommand::execute() {
+
+}
+
+BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_line) {
+
+    SmallShell &smash = SmallShell::getInstance();
+    JobsList::JobEntry *job;
+    int job_id;
+    if (strcmp(this->arguments[1], "") == 0) {
+        job_id = smash.jobsList.getLastStoppedJob();
+    } else {
+        try {
+            if (this->num_of_args >= 2) {
+                throw std::invalid_argument("");
+            }
+            job_id = stoi(this->arguments[1]);
+            if(job_id<0||job_id>100)
+            {
+                throw std::invalid_argument("");
+            }
+
+        } catch (std::invalid_argument &ia) {
+            std::cout << "smash error: bg: invalid arguments" << endl;
+            return;
+        }
+    }
+    if (job_id == -1) {
+        std::cout << "smash error: bg: jobs list is empty" << endl;
+    }
+    job = smash.jobsList.getJobById(job_id);
+    if (job == nullptr) {
+        std::cout << "smash error: bg: job-id " << job_id << " does not exist" << endl;
+    }
+    if (job->job_status == stopped) {
+        kill(job_id, SIGCONT);
+    }
+    cout << job->discript << " : " << job_id << endl;
+
+}
+
+void BackgroundCommand::execute() {
+
+}
+
+KillCommand::KillCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
+
+    SmallShell &smash = SmallShell::getInstance();
+    JobsList::JobEntry *job;
+    int job_id,sig_num;
+        try {
+            if (this->num_of_args != 2) {
+                throw std::invalid_argument("");
+            }
+
+            job_id = stoi(this->arguments[2]);
+            sig_num = stoi(this->arguments[1]);
+            if(sig_num>0||job_id<0||job_id>100)
+            {
+                throw std::invalid_argument("");
+            }
+        } catch (std::invalid_argument &ia) {
+            std::cout << "smash error: kill: invalid arguments" << endl;
+            return;
+    }
+    job = smash.jobsList.getJobById(job_id);
+    if (job == nullptr) {
+        std::cout << "smash error: kill: job-id "<<job_id<<" does not exist"<<endl;
+    }
+        kill(job_id, sig_num);
+    cout << "signal number"<< sig_num<<" was sent to pid "<<job->job_pid <<endl;
+}
+
+void KillCommand::execute() {
+
 }
