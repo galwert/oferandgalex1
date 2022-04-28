@@ -2,7 +2,7 @@
 #define SMASH_COMMAND_H_
 
 #include <vector>
-
+#include <cctype>
 #define COMMAND_ARGS_MAX_LENGTH (200)
 #define COMMAND_MAX_ARGS (20)
 
@@ -35,7 +35,7 @@ public:
 
 class ExternalCommand : public Command {
 public:
-    ExternalCommand(const char* cmd_line);
+    explicit ExternalCommand(const char* cmd_line);
     virtual ~ExternalCommand() {}
     void execute() override;
 };
@@ -43,17 +43,15 @@ public:
 class PipeCommand : public Command {
     // TODO: Add your data members
 public:
-    PipeCommand(const char* cmd_line);
-    virtual ~PipeCommand() {}
+    explicit PipeCommand(const char* cmd_line);
+    virtual ~PipeCommand() =default;
     void execute() override;
 };
 
 class RedirectionCommand : public Command {
-    const char* txt_file;
-    Command* cmd;
 public:
     explicit RedirectionCommand(const char* cmd_line);
-    virtual ~RedirectionCommand() {}
+    virtual ~RedirectionCommand() =default;
     void execute() override;
     //void prepare() override;
     //void cleanup() override;
@@ -71,10 +69,7 @@ class ChangePrompt : public BuiltInCommand {
 public:
     virtual ~ChangePrompt()=default;
     void execute() override;
-
-
-// TODO: Add your data members public:
-    explicit ChangePrompt(const char* cmd_line)
+    explicit ChangePrompt(const char* cmd_line);
 
 };
 
@@ -121,7 +116,7 @@ public:
     JobsList(): List(new std::vector<JobEntry *>)
     {}
     ~JobsList();
-    void addJob(Command* cmd,int pid, JobStatus isStopped);
+    void addJob(const char* cmd,int pid, JobStatus isStopped);
     void printJobsList();
     void killAllJobs();
     void removeFinishedJobs();
@@ -186,19 +181,18 @@ private:
 
     SmallShell();
 public:
-    std::string last_prompt;
     std::string prompt;
     JobsList jobsList;
     std::string last_working_directory;
-    std::string current_working_directory;
+    //std::string current_working_directory;
     int pid; //the pid of smash
     int fg_pid; //the pid of foreground process
     //int fg_job_id; //the job id of foreground process
-    bool redirect_mode;
-    bool append_mode;
-    bool pipe_mode;
-    std::string command1;
-    std::string command2;
+//    bool redirect_mode;
+//    bool append_mode;
+//    bool pipe_mode;
+//    std::string command1;
+//    std::string command2;
     Command* curr_cmd;
     Command *CreateCommand(const char * cmd_line);
     SmallShell(SmallShell const&)      = delete; // disable copy ctor

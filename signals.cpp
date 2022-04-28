@@ -11,14 +11,14 @@ void ctrlZHandler(int sig_num) {
   if (smash.fg_pid == EMPTY_FG) {
     return;
   }
-  if (smash.fg_pid==NOT_EXIST_IN_LIST||smash.jobsList.getJobByPid(smash.fg_pid) == nullptr) {
-    smash.jobsList.addJob(smash.curr_cmd,smash.fg_pid, stopped);
+  if (smash.jobsList.getJobByPid(smash.fg_pid) == nullptr) {
+    smash.jobsList.addJob(smash.curr_cmd->cmd_line,smash.fg_pid, stopped);
   }
   else {
     smash.jobsList.getJobByPid(smash.fg_pid)->StopJob();
     //not sure if there is a resume job command, only fg/ bg commands
   }
-  if (killpg(smash.fg_pid,SIGSTOP) == -1) { //ch name
+  if (kill(smash.fg_pid,SIGSTOP) == -1) { //ch name
     perror("smash error: kill failed");
     return;
   }
@@ -33,7 +33,7 @@ void ctrlCHandler(int sig_num) {
   if (smash.fg_pid == EMPTY_FG) {
     return;
   }
-  if (killpg(smash.fg_pid),SIGSTOP) == -1) { //ch name
+  if (kill(smash.fg_pid,SIGKILL) == -1) { //ch name
     perror("smash error: kill failed");
     return;
   }
