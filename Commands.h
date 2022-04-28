@@ -106,7 +106,7 @@ public:
     class JobEntry {
     public:
         int job_pid;
-        int jobid;
+        int job_id;
         JobStatus job_status;
         const char * discript;
         time_t insert_time;

@@ -231,7 +231,7 @@ void ShowPidCommand::execute() {
 void JobsList::printJobsList() {
     JobEntry* curr_job;
     removeFinishedJobs();
-for(int i=0;i<100;i++)
+for(int i=0;i<MAX_NUM_OF_JOBS;i++)
 {
     curr_job=this->List->at(i);
     std::cout<<"["<<i<<"]"<< curr_job->discript<<" : ";
@@ -262,7 +262,7 @@ int JobsList::getLastJob() {
 
 int JobsList::getLastStoppedJob() {
     int max=0;
-    for(int i=0;i<100;i++) {
+    for(int i=0;i<MAX_NUM_OF_JOBS;i++) {
         JobEntry *curr_job = this->List->at(i);
         if(curr_job!= nullptr&&curr_job->job_status==stopped)
         {
@@ -367,7 +367,7 @@ JobsList::JobEntry *JobsList::getJobByPid(int pid) {
     JobEntry* current_job;
     for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
-        if (pid== current_job->job_pid) {
+        if (pid == current_job->job_pid) {
             return current_job;
         }
     }
@@ -387,7 +387,7 @@ ForegroundCommand::ForegroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
                 throw std::invalid_argument("");
             }
             job_id = stoi(this->arguments[1]);
-            if(job_id<0||job_id>100)
+            if(job_id<0||job_id>MAX_NUM_OF_JOBS)
             {
                 throw std::invalid_argument("");
             }
@@ -402,15 +402,15 @@ ForegroundCommand::ForegroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
         std::cout<<"smash error: fg: jobs list is empty"<<endl;
     }
     job = smash.jobsList.getJobById(job_id);
-    if(job== nullptr)
+    if(job == nullptr)
     {
         std::cout<<"smash error: fg: job-id "<<job_id<<" does not exist"<<endl;
     }
     if (job->job_status == stopped) {
-        kill(job_id, SIGCONT);
+        kill(job->job_pid, SIGCONT);
     }
     cout << job->discript << " : " << job_id << endl;
-    waitpid(job_id, nullptr, 0); //waiting for the son to come home
+    waitpid(job->job_pid, nullptr, 0); //waiting for the son to come home
 
 }
 
@@ -431,7 +431,7 @@ BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
                 throw std::invalid_argument("");
             }
             job_id = stoi(this->arguments[1]);
-            if(job_id<0||job_id>100)
+            if(job_id<0||job_id>MAX_NUM_OF_JOBS)
             {
                 throw std::invalid_argument("");
             }
@@ -449,7 +449,7 @@ BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
         std::cout << "smash error: bg: job-id " << job_id << " does not exist" << endl;
     }
     if (job->job_status == stopped) {
-        kill(job_id, SIGCONT);
+        kill(job->job_pid, SIGCONT);
     }
     cout << job->discript << " : " << job_id << endl;
 
@@ -471,7 +471,7 @@ KillCommand::KillCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
 
             job_id = stoi(this->arguments[2]);
             sig_num = stoi(this->arguments[1]);
-            if(sig_num>0||job_id<0||job_id>100)
+            if(sig_num>0||job_id<0||job_id>MAX_NUM_OF_JOBS)
             {
                 throw std::invalid_argument("");
             }
@@ -483,7 +483,7 @@ KillCommand::KillCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
     if (job == nullptr) {
         std::cout << "smash error: kill: job-id "<<job_id<<" does not exist"<<endl;
     }
-        kill(job_id, sig_num);
+        kill(job->job_pid, sig_num);
     cout << "signal number"<< sig_num<<" was sent to pid "<<job->job_pid <<endl;
 }
 
