@@ -231,20 +231,20 @@ void ShowPidCommand::execute() {
 void JobsList::printJobsList() {
     JobEntry* curr_job;
     removeFinishedJobs();
-for(int i=0;i<MAX_NUM_OF_JOBS;i++)
-{
-    curr_job=this->List->at(i);
-    std::cout<<"["<<i<<"]"<< curr_job->discript<<" : ";
-    if(curr_job->job_status==bg)
+    for(int i=0;i<MAX_NUM_OF_JOBS;i++)
     {
-        std::cout<<difftime(curr_job->insert_time, time(nullptr))<< " secs";
-    }
-    else
-    {
-        std::cout<<difftime(curr_job->stopped_time, time(nullptr))<< " secs (stopped)";
-    }
+        curr_job=this->List->at(i);
+        std::cout<<"["<<i<<"]"<< curr_job->discript<<" : ";
+        if(curr_job->job_status==bg)
+        {
+            std::cout<<difftime(curr_job->insert_time, time(nullptr))<< " secs";
+        }
+        else
+        {
+            std::cout<<difftime(curr_job->stopped_time, time(nullptr))<< " secs (stopped)";
+        }
 
-}
+    }
 }
 
 
@@ -348,9 +348,6 @@ void JobsList::addJob(Command* cmd,int pid, JobStatus isStopped) {
     list->at(job_id)->insert_time = time(nullptr); //add stop_time
 }
 
-
-// void JobsList::resumeJob()
-
 void JobsList::removeFinishedJobs() {
     std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
     JobEntry* current_job;
@@ -418,8 +415,9 @@ void ForegroundCommand::execute() {
 
 }
 
-BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_line) {
+BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_line) {}
 
+void BackgroundCommand::execute() {
     SmallShell &smash = SmallShell::getInstance();
     JobsList::JobEntry *job;
     int job_id;
@@ -452,32 +450,29 @@ BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
         kill(job->job_pid, SIGCONT);
     }
     cout << job->discript << " : " << job_id << endl;
-
 }
 
-void BackgroundCommand::execute() {
+KillCommand::KillCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {}
 
-}
-
-KillCommand::KillCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
-
+void KillCommand::execute() {
+    
     SmallShell &smash = SmallShell::getInstance();
     JobsList::JobEntry *job;
     int job_id,sig_num;
-        try {
-            if (this->num_of_args != 2) {
-                throw std::invalid_argument("");
-            }
+    try {
+        if (this->num_of_args != 2) {
+            throw std::invalid_argument("");
+        }
 
-            job_id = stoi(this->arguments[2]);
-            sig_num = stoi(this->arguments[1]);
-            if(sig_num>0||job_id<0||job_id>MAX_NUM_OF_JOBS)
-            {
-                throw std::invalid_argument("");
-            }
-        } catch (std::invalid_argument &ia) {
-            std::cout << "smash error: kill: invalid arguments" << endl;
-            return;
+        job_id = stoi(this->arguments[2]);
+        sig_num = stoi(this->arguments[1]);
+        if(sig_num>0||job_id<0||job_id>MAX_NUM_OF_JOBS)
+        {
+            throw std::invalid_argument("");
+        }
+    } catch (std::invalid_argument &ia) {
+        std::cout << "smash error: kill: invalid arguments" << endl;
+        return;
     }
     job = smash.jobsList.getJobById(job_id);
     if (job == nullptr) {
@@ -487,6 +482,42 @@ KillCommand::KillCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
     cout << "signal number"<< sig_num<<" was sent to pid "<<job->job_pid <<endl;
 }
 
-void KillCommand::execute() {
+ExternalCommand::ExternalCommand(const char* cmd_line) : Command(cmd_line) {}
 
+void ExternalCommand::execute() {
+   
+
+    SmallShell &smash = SmallShell::getInstance();
+    if (_isBackgroundComamnd(cmd_line)) {
+        std::string cmd_modified_line = new string(cmd_line);
+        _removeBackgroundSign(cmd_modified_line);
+        char* args_array[COMMAND_ARGS_MAX_LENGTH];
+        num_of_args = _parseCommandLine(cmd_modified_line, args_array);
+        for (int i = 0; i < num_of_args; ++i) 
+        {
+            arguments[i] = args_array[i];
+        }
+        this->num_of_args =num_of_args;
+        this->arguments = args_array;
+        pid_t p = fork();
+        if (p == -1) {
+            return;
+        }
+        if (p == 0) {
+            smash->jobsList->addJob(cmd_line, getpid(), bg);
+        }
+    }
+    else {
+        pid_t p = fork();
+        if (p == -1) {
+            return;
+        }
+        if (p > 0) {
+            return;
+    }
+    execv("/bin/bash", this->arguments);
+}
+
+Command::RedirectionCommand(const char* cmd_line) : Command(cmd_line) {
+    
 }

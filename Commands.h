@@ -49,7 +49,8 @@ public:
 };
 
 class RedirectionCommand : public Command {
-    // TODO: Add your data members
+    const char* txt_file;
+    Command* cmd;
 public:
     explicit RedirectionCommand(const char* cmd_line);
     virtual ~RedirectionCommand() {}
@@ -98,7 +99,6 @@ public:
     virtual ~QuitCommand() {}
     void execute() override;
 };
-
 
 enum JobStatus{bg=0, stopped=1};
 class JobsList {
