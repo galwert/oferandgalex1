@@ -119,20 +119,26 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     else if (firstWord == "cd") {
         return new ChangeDirCommand(cmd_line);
     }
-    else if (firstWord=="jobs") {
+    else if (firstWord == "jobs") {
         return new JobsCommand(cmd_line);
     }
-    else if (firstWord=="kill") {
+    else if (firstWord == "kill") {
         return new KillCommand(cmd_line);
     }
-    else if (firstWord=="fg") {
+    else if (firstWord == "fg") {
         return new ForegroundCommand(cmd_line);
     }
-    else if (firstWord=="bg") {
+    else if (firstWord == "bg") {
         return new BackgroundCommand(cmd_line);
     }
-    else if (firstWord=="quit") {
+    else if (firstWord == "quit") {
         return new QuitCommand(cmd_line);
+    }
+    else if (firstWord == "tail") {
+        return new TailCommand(cmd_line);    
+    }
+    else if (firstWord == "touch") {
+        return new TouchCommand(cmd_line);    
     }
     else {
         return new ExternalCommand(cmd_line);
@@ -568,7 +574,7 @@ void RedirectionCommand::execute() {
     }
     txt_file=_trim(txt_file);
     int output_channel= dup(1);
-    int fd=open(txt_file.c_str(),O_CREAT|O_WRONLY|(is_append ? O_APPEND:O_TRUNC),777);
+    int fd=open(txt_file.c_str(),O_CREAT|O_WRONLY|(is_append ? O_APPEND : O_TRUNC),777);
     if(fd==-1)
     {
         perror("smash error: open failed");
@@ -665,4 +671,41 @@ void PipeCommand::execute() {
     }
     cmd1->execute();
     cmd2->execute();
+}
+
+TailCommand::TailCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
+
+TailCommand::execute() {
+    if((this->arguments[1].find('-') != string::npos) {
+        int num_of_lines = stoi(this->arguments[1].substr(1)); //verify command validity
+        int path_arg_num = 2;
+    }
+    else {
+        int num_of lines = NUM_OF_LINES;
+        int path_arg_num = 1;
+    }
+    string txt_file = this->arguments[path_arg_num];
+    int fd = open(txt_file.c_str(), O_RDONLY,  777);
+    if(fd == -1) {
+        perror("smash error: open failed");
+        return;
+    }
+
+    for(; num_of_lines >= 0 ;num_of_lines--) {
+        //read n last lines (begin at EOF), using read() function
+    }
+
+    if(close (fd) == -1)
+    {
+        perror("smash error: close failed");
+        return;
+    }
+
+
+}
+
+TouchCommand::TouchCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
+
+TouchCommand::execute() {
+    
 }
