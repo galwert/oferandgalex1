@@ -9,6 +9,7 @@
 #define MAX_NUM_OF_JOBS 100
 #define NOT_EXIST_IN_LIST -1
 #define EMPTY_FG -1
+#define NUM_OF_LINES 10
 
 class Command {
 public:
@@ -27,9 +28,7 @@ public:
 class BuiltInCommand : public Command {
 public:
     BuiltInCommand(const char* cmd_line): Command(cmd_line)
-    {
 
-    }
     virtual ~BuiltInCommand()=default;
 };
 
