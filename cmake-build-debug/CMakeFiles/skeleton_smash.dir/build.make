@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash"
+CMAKE_SOURCE_DIR = "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug"
+CMAKE_BINARY_DIR = "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/skeleton_smash.dir/depend.make
@@ -59,42 +59,42 @@ include CMakeFiles/skeleton_smash.dir/flags.make
 
 CMakeFiles/skeleton_smash.dir/signals.cpp.o: CMakeFiles/skeleton_smash.dir/flags.make
 CMakeFiles/skeleton_smash.dir/signals.cpp.o: ../signals.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/skeleton_smash.dir/signals.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skeleton_smash.dir/signals.cpp.o -c "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/signals.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/skeleton_smash.dir/signals.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skeleton_smash.dir/signals.cpp.o -c "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/signals.cpp"
 
 CMakeFiles/skeleton_smash.dir/signals.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skeleton_smash.dir/signals.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/signals.cpp" > CMakeFiles/skeleton_smash.dir/signals.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/signals.cpp" > CMakeFiles/skeleton_smash.dir/signals.cpp.i
 
 CMakeFiles/skeleton_smash.dir/signals.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skeleton_smash.dir/signals.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/signals.cpp" -o CMakeFiles/skeleton_smash.dir/signals.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/signals.cpp" -o CMakeFiles/skeleton_smash.dir/signals.cpp.s
 
 CMakeFiles/skeleton_smash.dir/Commands.cpp.o: CMakeFiles/skeleton_smash.dir/flags.make
 CMakeFiles/skeleton_smash.dir/Commands.cpp.o: ../Commands.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/skeleton_smash.dir/Commands.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skeleton_smash.dir/Commands.cpp.o -c "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/Commands.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/skeleton_smash.dir/Commands.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skeleton_smash.dir/Commands.cpp.o -c "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/Commands.cpp"
 
 CMakeFiles/skeleton_smash.dir/Commands.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skeleton_smash.dir/Commands.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/Commands.cpp" > CMakeFiles/skeleton_smash.dir/Commands.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/Commands.cpp" > CMakeFiles/skeleton_smash.dir/Commands.cpp.i
 
 CMakeFiles/skeleton_smash.dir/Commands.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skeleton_smash.dir/Commands.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/Commands.cpp" -o CMakeFiles/skeleton_smash.dir/Commands.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/Commands.cpp" -o CMakeFiles/skeleton_smash.dir/Commands.cpp.s
 
 CMakeFiles/skeleton_smash.dir/smash.cpp.o: CMakeFiles/skeleton_smash.dir/flags.make
 CMakeFiles/skeleton_smash.dir/smash.cpp.o: ../smash.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/skeleton_smash.dir/smash.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skeleton_smash.dir/smash.cpp.o -c "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/smash.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/skeleton_smash.dir/smash.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skeleton_smash.dir/smash.cpp.o -c "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/smash.cpp"
 
 CMakeFiles/skeleton_smash.dir/smash.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skeleton_smash.dir/smash.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/smash.cpp" > CMakeFiles/skeleton_smash.dir/smash.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/smash.cpp" > CMakeFiles/skeleton_smash.dir/smash.cpp.i
 
 CMakeFiles/skeleton_smash.dir/smash.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skeleton_smash.dir/smash.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/smash.cpp" -o CMakeFiles/skeleton_smash.dir/smash.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/smash.cpp" -o CMakeFiles/skeleton_smash.dir/smash.cpp.s
 
 # Object files for target skeleton_smash
 skeleton_smash_OBJECTS = \
@@ -110,7 +110,7 @@ skeleton_smash: CMakeFiles/skeleton_smash.dir/Commands.cpp.o
 skeleton_smash: CMakeFiles/skeleton_smash.dir/smash.cpp.o
 skeleton_smash: CMakeFiles/skeleton_smash.dir/build.make
 skeleton_smash: CMakeFiles/skeleton_smash.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable skeleton_smash"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable skeleton_smash"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/skeleton_smash.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,6 +123,6 @@ CMakeFiles/skeleton_smash.dir/clean:
 .PHONY : CMakeFiles/skeleton_smash.dir/clean
 
 CMakeFiles/skeleton_smash.dir/depend:
-	cd "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/cmake-build-debug/CMakeFiles/skeleton_smash.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles/skeleton_smash.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/skeleton_smash.dir/depend
 

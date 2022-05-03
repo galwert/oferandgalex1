@@ -39,7 +39,6 @@ void ctrlCHandler(int sig_num) {
   }
   cout << "smash: process" << smash.fg_pid << "was killed" << endl;
   smash.fg_pid = EMPTY_FG;
-  smash.fg_job_id = NOT_EXIST_IN_LIST;
 }
 
 void alarmHandler(int sig_num) {

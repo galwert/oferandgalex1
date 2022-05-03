@@ -6,6 +6,7 @@
 #include <sys/wait.h>
 #include <iomanip>
 #include "Commands.h"
+#include <utime.h>
 #include <time.h>
 #include "fcntl.h"
 // #include <utime.h>
@@ -397,7 +398,7 @@ ForegroundCommand::ForegroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
     {
         std::cout<<"smash error: fg: jobs list is empty"<<endl;
     }
-    job = smash.jobsList.getJobById(job_id);
+    job = smash.jobsList.List->at(job_id);
     if(job== nullptr)
     {
         std::cout<<"smash error: fg: job-id "<<job_id<<" does not exist"<<endl;
@@ -440,7 +441,7 @@ BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
     if (job_id == -1) {
         std::cout << "smash error: bg: jobs list is empty" << endl;
     }
-    job = smash.jobsList.getJobById(job_id);
+    job = smash.jobsList.List->at(job_id);
     if (job == nullptr) {
         std::cout << "smash error: bg: job-id " << job_id << " does not exist" << endl;
     }
@@ -452,6 +453,15 @@ BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
 
 void BackgroundCommand::execute() {
 
+}
+JobsCommand::JobsCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
+
+}
+
+void JobsCommand::execute() {
+    SmallShell &smash = SmallShell::getInstance();
+    smash.jobsList.removeFinishedJobs();
+    smash.jobsList.printJobsList();
 }
 
 KillCommand::KillCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {}
@@ -476,7 +486,7 @@ void KillCommand::execute() {
         std::cout << "smash error: kill: invalid arguments" << endl;
         return;
     }
-    job = smash.jobsList.getJobById(job_id);
+    job = smash.jobsList.List->at(job_id);
     if (job == nullptr) {
         std::cout << "smash error: kill: job-id "<<job_id<<" does not exist"<<endl;
     }
@@ -666,3 +676,91 @@ void PipeCommand::execute() {
     cmd1->execute();
     cmd2->execute();
 }
+
+TailCommand::TailCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
+
+}
+
+void TailCommand::execute() {
+    SmallShell &smash = SmallShell::getInstance();
+    string text_file;
+    int lines_number;
+    try{
+        if(num_of_args==3) {
+             lines_number =(-1)* stoi(this->arguments[1]);
+             if(lines_number<0)
+             {
+                 throw std::invalid_argument("");
+             }
+             text_file=this->arguments[2];
+        }
+        else if(num_of_args==2)
+        {
+             lines_number=10;
+            text_file=this->arguments[1];
+        }
+        else
+        {
+            throw std::invalid_argument("");
+        }
+    }catch (std::invalid_argument& ia)
+    {
+        std::cout<<"smash error: tail: invalid arguments"<<endl;
+        return;
+    }
+
+    int fd=open(text_file.c_str(),O_RDONLY,777);
+    if(fd==-1)
+    {
+        perror("smash error: open failed");
+        return;
+    }
+    if(lseek(fd,0,SEEK_END))
+    {
+        perror("smash error: lseek failed");
+    }
+    char * buffer = new char [1];
+  int count_of_chars=0, count_of_lines=0;
+    while(count_of_lines!=lines_number)
+    {
+        if (!lseek(fd, --count_of_chars, SEEK_END))
+        {
+            if(read(fd,buffer,1)==-1)
+            {
+                perror("smash error: read failed");
+            }
+            if(strcmp(buffer,"/n")==0)
+            {
+                count_of_lines++;
+            }
+        }
+        else
+        {
+            perror("smash error: lseek failed");
+        }
+    }
+    while (read(fd,buffer,1)!=0)
+    {
+        if(write(1,buffer,1)!=1)
+        {
+            perror("smash error: write failed");
+        }
+    }
+}
+
+TouchCommand::TouchCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
+
+}
+
+void TouchCommand::execute() {
+    if(this->num_of_args!=3)
+    {
+        perror("smash error: touch: invalid arguments");
+    }
+    int secs,mins,hours,days,monts,years;
+    std::stringstream ss(this->arguments[2]);
+    ss>>secs>>mins>>hours>>days>>monts>>years;
+    //tm *tm1=new tm(secs,mins,hours,days,monts,years-1900,0,0,0,0, nullptr);
+      //      mktime()
+}
+

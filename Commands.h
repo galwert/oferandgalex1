@@ -115,7 +115,7 @@ public:
 public:
     JobsList(): List(new std::vector<JobEntry *>)
     {}
-    ~JobsList();
+    ~JobsList()=default;
     void addJob(const char* cmd,int pid, JobStatus isStopped);
     void printJobsList();
     void killAllJobs();
@@ -132,8 +132,8 @@ public:
 class JobsCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
-    JobsCommand(const char* cmd_line);
-    virtual ~JobsCommand() {}
+    explicit JobsCommand(const char* cmd_line);
+     ~JobsCommand() override=default;
     void execute() override;
 };
 
@@ -141,7 +141,7 @@ class KillCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
     explicit KillCommand(const char* cmd_line);
-    virtual ~KillCommand() {}
+     ~KillCommand() override=default;
     void execute() override;
 };
 
@@ -149,7 +149,7 @@ class ForegroundCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
     explicit ForegroundCommand(const char* cmd_line);
-    virtual ~ForegroundCommand()=default;
+    virtual ~ForegroundCommand() override=default;
     void execute() override;
 };
 
@@ -157,21 +157,21 @@ class BackgroundCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
     explicit BackgroundCommand(const char* cmd_line);
-    virtual ~BackgroundCommand()=default;
+     ~BackgroundCommand() override=default;
     void execute() override;
 };
 
 class TailCommand : public BuiltInCommand {
 public:
-    TailCommand(const char* cmd_line);
-    virtual ~TailCommand() {}
+    explicit TailCommand(const char* cmd_line);
+     ~TailCommand() override=default;
     void execute() override;
 };
 
 class TouchCommand : public BuiltInCommand {
 public:
-    TouchCommand(const char* cmd_line);
-    virtual ~TouchCommand() {}
+    explicit TouchCommand(const char* cmd_line);
+    ~TouchCommand() override=default;
     void execute() override;
 };
 
