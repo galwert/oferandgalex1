@@ -27,9 +27,12 @@ public:
 
 class BuiltInCommand : public Command {
 public:
-    BuiltInCommand(const char* cmd_line): Command(cmd_line)
+    explicit BuiltInCommand(const char* cmd_line);
 
-    virtual ~BuiltInCommand()=default;
+    virtual ~BuiltInCommand()
+    {
+
+    }
 };
 
 class ExternalCommand : public Command {
@@ -66,7 +69,7 @@ public:
 
 class ChangePrompt : public BuiltInCommand {
 public:
-    virtual ~ChangePrompt()=default;
+     ~ChangePrompt() override=default;
     void execute() override;
     explicit ChangePrompt(const char* cmd_line);
 
@@ -102,7 +105,7 @@ public:
         int job_pid;
         int job_id;
         JobStatus job_status;
-        const char * discript;
+        char * discript;
         time_t insert_time;
         time_t stopped_time;
         //JobEntry(Command* cmd, int pid,JobStatus isStopped);

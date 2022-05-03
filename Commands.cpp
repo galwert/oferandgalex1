@@ -102,10 +102,10 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     string cmd_s = _trim(std::string(cmd_line));
     string firstWord = cmd_s.substr(0, cmd_s.find_first_of(" \n"));
 
-    if (string(cmd_line).find('>') == string::npos) {
+    if (string(cmd_line).find('>') != string::npos) {
         return new RedirectionCommand(cmd_line);
     }
-    else if (string(cmd_line).find('|') == string::npos) {
+    else if (string(cmd_line).find('|') != string::npos) {
         return new PipeCommand(cmd_line);
     }
     else if (firstWord == "chprompt") {
@@ -148,6 +148,7 @@ void SmallShell::executeCommand(const char *cmd_line) {
 
 Command::Command(const char* cmd_line) : cmd_line(cmd_line) {
     char* args_array[COMMAND_ARGS_MAX_LENGTH];
+    this->arguments=new char* [COMMAND_MAX_ARGS];
     num_of_args = _parseCommandLine(cmd_line, args_array);
     for (int i = 0; i < num_of_args; ++i) {
         arguments[i] = args_array[i];
@@ -162,23 +163,12 @@ Command::~Command() {
     // SmallShell::getInstance().fg_pid = EMPTY_FG;
 }
 
+ChangePrompt::ChangePrompt(const char *cmd_line) : BuiltInCommand(cmd_line) {}
+
 void ChangePrompt::execute() {
-    if(strcmp(this->arguments[0],"")==0) {
-        SmallShell::getInstance().prompt="smash";
-    }
-    else
-    {
-        SmallShell::getInstance().prompt=this->arguments[0];
-    }
-}
-
-ChangePrompt::ChangePrompt(const char *cmd_line) : BuiltInCommand(cmd_line)
-{
-
     SmallShell& smash = SmallShell::getInstance();
-    if(strcmp(this->arguments[1],"")==0)
+    if(this->arguments[1]== nullptr)
     {
-
         smash.prompt="smash";
     }
     else
@@ -186,15 +176,14 @@ ChangePrompt::ChangePrompt(const char *cmd_line) : BuiltInCommand(cmd_line)
         smash.prompt=this->arguments[1];
     }
 }
-
 ChangeDirCommand::ChangeDirCommand(const char* cmd_line): BuiltInCommand(cmd_line) {}
 
 void ChangeDirCommand::execute()
 {
     SmallShell& smash = SmallShell::getInstance();
-    if(this->num_of_args>=2)
+    if((this->num_of_args==3&&strcmp(this->arguments[2],"&")!=0)||(this->num_of_args>=4))
     {
-        std::cerr<<"smash error: cd: too many arguments";
+        std::cerr<<"smash error: cd: too many arguments"<<endl;
         return;
     }
     char* new_prev_dir = get_current_dir_name();
@@ -202,7 +191,7 @@ void ChangeDirCommand::execute()
     {
         if(smash.last_working_directory.empty())
         {
-            std::cerr<<"smash error: cd: OLDPWD not set";
+            std::cerr<<"smash error: cd: OLDPWD not set"<<endl;
             return;
         }
         else
@@ -234,14 +223,18 @@ void JobsList::printJobsList() {
     for(int i=0;i<MAX_NUM_OF_JOBS;i++)
     {
         curr_job=this->List->at(i);
-        std::cout<<"["<<i<<"]"<< curr_job->discript<<" : ";
+        if(curr_job== nullptr)
+        {
+            break;
+        }
+        std::cout<<"["<<i<<"] "<< curr_job->discript<<" : ";
         if(curr_job->job_status==bg)
         {
-            std::cout<<difftime(curr_job->insert_time, time(nullptr))<< " secs";
+            std::cout<<-difftime(curr_job->insert_time, time(nullptr))<< " secs"<<endl;
         }
         else
         {
-            std::cout<<difftime(curr_job->stopped_time, time(nullptr))<< " secs (stopped)";
+            std::cout<<-difftime(curr_job->stopped_time, time(nullptr))<< " secs (stopped)"<<endl;
         }
 
     }
@@ -342,8 +335,9 @@ void JobsList::addJob(const char * cmd,int pid, JobStatus isStopped) {
     int max_job_id = getLastJob();
     int job_id = list->empty() ? 1 : (max_job_id + 1);
     list->at(job_id) = new JobEntry();
-    list->at(job_id)->job_pid = pid; //which pid?
-    list->at(job_id)->discript = cmd;
+    list->at(job_id)->job_pid = pid;
+    list->at(job_id)->discript =(char*)malloc(sizeof(char )*COMMAND_ARGS_MAX_LENGTH);
+    strcpy(list->at(job_id)->discript, cmd);
     list->at(job_id)->job_status=isStopped;
     list->at(job_id)->insert_time = time(nullptr); //add stop_time
 }
@@ -353,6 +347,10 @@ void JobsList::removeFinishedJobs() {
     JobEntry* current_job;
     for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
+        if(current_job== nullptr)
+        {
+            break;
+        }
         if (waitpid(current_job->job_pid, nullptr, WNOHANG) == current_job->job_pid) { //error handling??
             list->at(i)= nullptr;
         }
@@ -460,7 +458,6 @@ JobsCommand::JobsCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
 
 void JobsCommand::execute() {
     SmallShell &smash = SmallShell::getInstance();
-    smash.jobsList.removeFinishedJobs();
     smash.jobsList.printJobsList();
 }
 
@@ -512,22 +509,20 @@ void ExternalCommand::execute()
             perror("smash error: setpgrp failed");
             return;
         }
-        smash.jobsList.addJob(cmd_line, getpid(), bg);
-        smash.fg_pid=getpid();
+        char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
+        strcpy(cmd_modified_line,cmd_line);
         if (_isBackgroundComamnd(cmd_line)) {
-            char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
-            strcpy(cmd_modified_line,cmd_line);
             _removeBackgroundSign(cmd_modified_line);
-            char** args_array=new char *[COMMAND_MAX_ARGS];
-            num_of_args = _parseCommandLine(cmd_modified_line, args_array);
-            for (int i = 0; i < num_of_args; ++i)
-            {
-                arguments[i] = args_array[i];
-            }
-            this->num_of_args =num_of_args;
-            this->arguments = args_array;
+//            char** args_array=new char *[COMMAND_MAX_ARGS];
+//            num_of_args = _parseCommandLine(cmd_modified_line, args_array);
+//            for (int i = 0; i < num_of_args; ++i)
+//            {
+//                arguments[i] = args_array[i];
+//            }
+//            this->num_of_args =num_of_args;
+//            this->arguments = args_array;
         }
-        char * full_array []= {(char*)"/bin/bash", (char*)"-c",(char *)this->arguments, nullptr};
+        char * full_array []= {(char*)"/bin/bash", (char*)"-c",(char *)cmd_modified_line, nullptr};
         if(execv("/bin/bash", full_array)== -1)
         {
             perror("smash error: execv failed");
@@ -538,24 +533,28 @@ void ExternalCommand::execute()
     {
         //god-father
     if (_isBackgroundComamnd(cmd_line)) {
-        char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];///fix this
-        strcpy(cmd_modified_line,cmd_line);
-        _removeBackgroundSign(cmd_modified_line);
-        char** args_array=new char *[COMMAND_MAX_ARGS];
-        num_of_args = _parseCommandLine(cmd_modified_line, args_array);
-        for (int i = 0; i < num_of_args; ++i)
-        {
-            arguments[i] = args_array[i];
-        }
-        this->num_of_args =num_of_args;
-        this->arguments = args_array;
+//        char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
+//        strcpy(cmd_modified_line,cmd_line);
+//        _removeBackgroundSign(cmd_modified_line);
+//        char** args_array=new char *[COMMAND_MAX_ARGS];
+//        num_of_args = _parseCommandLine(cmd_modified_line, args_array);
+//        for (int i = 0; i < num_of_args; ++i)
+//        {
+//            arguments[i] = args_array[i];
+//        }
+//        this->num_of_args =num_of_args;
+//        this->arguments = args_array;
+        smash.jobsList.addJob(cmd_line, p, bg);
+        smash.fg_pid=EMPTY_FG;
     }
     else {
+        smash.fg_pid=p;
             if(waitpid(p, nullptr, WUNTRACED)==-1)
             {
                 perror("smash error: waitpid failed");
                 return;
             }
+        smash.fg_pid = EMPTY_FG;
         }
     }
 
@@ -736,15 +735,31 @@ void TailCommand::execute() {
         }
         else
         {
-            perror("smash error: lseek failed");
+            if(lseek(fd,0,SEEK_SET))//reached the start of file
+            {
+                perror("smash error: lseek failed");
+            }
         }
     }
-    while (read(fd,buffer,1)!=0)
+    long read1;
+    while (true)//add perror if read fails not EOF
     {
+       read1=read(fd,buffer,1);
+        if(read1==0)
+        {
+            break;
+        }
+        if(read1==-1)
+        {
+            perror("smash error: read failed");
+        }
         if(write(1,buffer,1)!=1)
         {
             perror("smash error: write failed");
         }
+    }
+    if(close(fd)!=1) {
+        perror("smash error: close failed");
     }
 }
 
@@ -760,7 +775,18 @@ void TouchCommand::execute() {
     int secs,mins,hours,days,monts,years;
     std::stringstream ss(this->arguments[2]);
     ss>>secs>>mins>>hours>>days>>monts>>years;
-    //tm *tm1=new tm(secs,mins,hours,days,monts,years-1900,0,0,0,0, nullptr);
-      //      mktime()
+    tm *tm2=new struct tm();
+    tm2->tm_sec=secs;
+
+
+    tm *tm1=new struct tm;
+    strptime(this->arguments[2],"%d:%d:%d:%d:%d:%d:%d",tm1);
+    utimbuf *buf{};
+    buf->actime= reinterpret_cast<__time_t>(tm1);
+    buf->modtime= reinterpret_cast<__time_t>(tm1);
+    utime(this->arguments[1],buf);
 }
 
+BuiltInCommand::BuiltInCommand(const char *cmd_line) : Command(cmd_line) {
+
+}
