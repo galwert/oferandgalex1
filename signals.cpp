@@ -16,7 +16,6 @@ void ctrlZHandler(int sig_num) {
   }
   else {
     smash.jobsList.getJobByPid(smash.fg_pid)->StopJob();
-    //not sure if there is a resume job command, only fg/ bg commands
   }
   if (kill(smash.fg_pid,SIGSTOP) == -1) { //ch name
     perror("smash error: kill failed");

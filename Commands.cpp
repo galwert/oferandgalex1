@@ -102,6 +102,7 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     string cmd_s = _trim(std::string(cmd_line));
     string firstWord = cmd_s.substr(0, cmd_s.find_first_of(" \n"));
 
+
     if (string(cmd_line).find('>') != string::npos) {
         return new RedirectionCommand(cmd_line);
     }
@@ -142,6 +143,8 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
 
 void SmallShell::executeCommand(const char *cmd_line) {
     Command* cmd = CreateCommand(cmd_line);
+    SmallShell& smash = SmallShell::getInstance();
+    smash.curr_cmd=cmd;
     cmd->execute();
     // Please note that you must fork smash process for some commands (e.g., external commands....)
 }
@@ -225,7 +228,7 @@ void JobsList::printJobsList() {
         curr_job=this->List->at(i);
         if(curr_job== nullptr)
         {
-            break;
+            continue;
         }
         std::cout<<"["<<i<<"] "<< curr_job->discript<<" : ";
         if(curr_job->job_status==bg)
@@ -325,6 +328,7 @@ void JobsList::killAllJobs() {
         current_job = list->at(i);
         if (current_job) {
             cout << current_job->job_pid << ": " << current_job->discript << endl;
+            kill(current_job->job_pid, SIGKILL);
         }
     }
 }
@@ -349,7 +353,7 @@ void JobsList::removeFinishedJobs() {
         current_job = list->at(i);
         if(current_job== nullptr)
         {
-            break;
+            continue;
         }
         if (waitpid(current_job->job_pid, nullptr, WNOHANG) == current_job->job_pid) { //error handling??
             list->at(i)= nullptr;
@@ -362,7 +366,7 @@ JobsList::JobEntry *JobsList::getJobByPid(int pid) {
     JobEntry* current_job;
     for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
-        if (pid== current_job->job_pid) {
+        if (current_job!= nullptr&&pid== current_job->job_pid) {
             return current_job;
         }
     }
@@ -549,6 +553,7 @@ void ExternalCommand::execute()
     }
     else {
         smash.fg_pid=p;
+        raise(SIGTSTP);
             if(waitpid(p, nullptr, WUNTRACED)==-1)
             {
                 perror("smash error: waitpid failed");
