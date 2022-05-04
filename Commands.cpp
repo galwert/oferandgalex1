@@ -449,6 +449,7 @@ BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_l
     }
     if (job->job_status == stopped) {
         kill(job->job_pid, SIGCONT);
+        job->job_status = bg;
     }
     cout << job->discript << " : " << job_id << endl;
 }
