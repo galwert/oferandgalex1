@@ -1,0 +1,11 @@
+smash> submitted by Eran
+smash> smash> smash> smash> [1] ./printSignals.exe & : 16752 -0 secs
+[2] sleep 200& : 16753 -0 secs
+[3] sleep 300& : 2 -0 secs
+smash> signal number9 was sent to pid 16753
+smash> smash> [3] sleep 300& : 2 X secs
+[4] sleep 400& : 16863 -0 secs
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: job-id 5 does not exist

@@ -1,0 +1,45 @@
+smash> smash> smash> smash> smash> smash> sleep 900& : 9
+smash: got Ctrl-C
+smash: process 46469 was killed
+smash> [4] sleep 400& : 46464 -0 secs
+[9] sleep 900& : 46469 -0 secs
+[9] sleep 900& : 46469 -0 secs
+[4] sleep 400& : 46464 -0 secs
+[10] sleep 1000& : 464610 -0 secs
+smash> sleep 400& : 4
+smash: got Ctrl-C
+smash: process 46464 was killed
+smash> [4] sleep 400& : 46464 X secs
+[9] sleep 900& : 46469 X secs
+[9] sleep 900& : 46469 X secs
+[4] sleep 400& : 46464 X secs
+[10] sleep 1000& : 464610 X secs
+smash> sleep 900& : 9
+smash: got Ctrl-C
+smash: process 46469 was killed
+smash> [4] sleep 400& : 46464 X secs
+[9] sleep 900& : 46469 X secs
+[9] sleep 900& : 46469 X secs
+[4] sleep 400& : 46464 X secs
+[10] sleep 1000& : 464610 X secs
+smash> sleep 1000& : 10
+smash: got Ctrl-C
+smash: process 464610 was killed
+smash> [4] sleep 400& : 46464 X secs
+[9] sleep 900& : 46469 X secs
+[9] sleep 900& : 46469 X secs
+[4] sleep 400& : 46464 X secs
+[10] sleep 1000& : 464610 X secs
+smash> sleep 1000& : 10
+smash> smash: got Ctrl-C
+[4] sleep 400& : 46464 X secs
+[9] sleep 900& : 46469 X secs
+[9] sleep 900& : 46469 X secs
+[4] sleep 400& : 46464 X secs
+[10] sleep 1000& : 464610 X secs
+smash> sending SIGKILL signal to 10 jobs:
+46464: sleep 400&
+46469: sleep 900&
+46469: sleep 900&
+46464: sleep 400&
+464610: sleep 1000&

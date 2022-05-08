@@ -1,0 +1,18 @@
+smash> smash> smash> smash> smash> timeout_sample_file1.txt
+timeout_sample_file2.txt
+smash> before
+smash> after
+smash> smash> after
+smash> smash> smash: got Ctrl-C
+smash> smash> smash> smash: got Ctrl-C
+smash> smash> smash> smash> smash> smash: got Ctrl-C
+smash> smash> smash> smash> [1] timeout 5 sleep 100& : 18243 -0 secs
+[2] timeout 4 sleep 200& : 18244 -0 secs
+[3] timeout 2 sleep 300& : 18245 -0 secs
+[4] timeout 7 sleep 400& : 18246 -0 secs
+smash> smash> smash> smash: got Ctrl-C
+smash: process 2 was killed
+smash> smash> smash: got Ctrl-C
+smash: process 3 was killed
+smash> sending SIGKILL signal to 1 jobs:
+18692: timeout 3 sleep 1&

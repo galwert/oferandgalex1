@@ -86,7 +86,7 @@ void _removeBackgroundSign(char* cmd_line) {
 
 SmallShell::SmallShell() {
 this->jobsList.List=new std::vector<JobsList::JobEntry *>();
-this->jobsList.List->resize(MAX_NUM_OF_JOBS);
+this->jobsList.List->resize(MAX_NUM_OF_JOBS + 1);
 this->prompt="smash";
 this->last_working_directory="";
 this->pid=getpid();
@@ -224,21 +224,21 @@ void ShowPidCommand::execute() {
 void JobsList::printJobsList() {
     JobEntry* curr_job;
     removeFinishedJobs();
-    for(int i=0;i<MAX_NUM_OF_JOBS;i++)
+    for(int i=1;i<=MAX_NUM_OF_JOBS;i++)
     {
         curr_job=this->List->at(i);
         if(curr_job== nullptr)
         {
             continue;
         }
-        std::cout<<"["<<i<<"] "<< curr_job->discript<<" : ";
+        std::cout<<"["<<curr_job->job_id<<"] "<< curr_job->discript <<" : "<<curr_job->job_pid<<" ";
         if(curr_job->job_status==bg)
         {
-            std::cout<<-difftime(curr_job->insert_time, time(nullptr))<< " secs"<<endl;
+            std::cout<< difftime(time(nullptr), curr_job->insert_time) << " secs"<<endl;
         }
         else
         {
-            std::cout<<-difftime(curr_job->insert_time, time(nullptr))<< " secs (stopped)"<<endl;
+            std::cout<< difftime(time(nullptr), curr_job->insert_time) << " secs (stopped)"<<endl;
         }
 
     }
@@ -246,8 +246,8 @@ void JobsList::printJobsList() {
 
 
 int JobsList::getLastJob() {
-    int max=-1;
-    for(int i=0;i<MAX_NUM_OF_JOBS;i++) {
+    int max=0;
+    for(int i=1;i<=MAX_NUM_OF_JOBS;i++) {
         JobEntry *curr_job = this->List->at(i);
         if(curr_job!= nullptr)
         {
@@ -259,7 +259,7 @@ int JobsList::getLastJob() {
 
 int JobsList::getLastStoppedJob() {
     int max=0;
-    for(int i=0;i<MAX_NUM_OF_JOBS;i++) {
+    for(int i=0;i<=MAX_NUM_OF_JOBS;i++) {
         JobEntry *curr_job = this->List->at(i);
         if(curr_job!= nullptr&&curr_job->job_status==stopped)
         {
@@ -309,7 +309,7 @@ void QuitCommand::execute() {
     JobsList::JobEntry* current_job;
     int counter = 0;
     if (this->num_of_args==2&&strcmp(this->arguments[1],"kill") == 0) {
-        for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+        for (int i = 1; i <= MAX_NUM_OF_JOBS; i++) {
             current_job = list->at(i);
             if (current_job) {
                 counter++;
@@ -324,7 +324,7 @@ void QuitCommand::execute() {
 void JobsList::killAllJobs() {
     std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
     JobsList::JobEntry* current_job;
-    for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+    for (int i = 1; i <= MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
         if (current_job) {
             cout << current_job->job_pid << ": " << current_job->discript << endl;
@@ -337,9 +337,10 @@ void JobsList::addJob(const char * cmd,int pid, JobStatus isStopped) {
     removeFinishedJobs();
     std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
     int max_job_id = getLastJob();
-    int job_id = list->empty() ? 1 : (max_job_id + 1);
+    int job_id = (max_job_id + 1);
     list->at(job_id) = new JobEntry();
     list->at(job_id)->job_pid = pid;
+    list->at(job_id)->job_id = job_id;
     list->at(job_id)->discript =(char*)malloc(sizeof(char )*COMMAND_ARGS_MAX_LENGTH);
     strcpy(list->at(job_id)->discript, cmd);
     list->at(job_id)->job_status=isStopped;
@@ -349,7 +350,7 @@ void JobsList::addJob(const char * cmd,int pid, JobStatus isStopped) {
 void JobsList::removeFinishedJobs() {
     std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
     JobEntry* current_job;
-    for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+    for (int i = 1 ; i <= MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
         if(current_job== nullptr)
         {
@@ -370,7 +371,7 @@ void JobsList::removeFinishedJobs() {
 JobsList::JobEntry *JobsList::getJobByPid(int pid) {
     std::vector<JobsList::JobEntry *> *list = SmallShell::getInstance().jobsList.List;
     JobEntry* current_job;
-    for (int i = 0; i < MAX_NUM_OF_JOBS; i++) {
+    for (int i = 1; i <= MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
         if (current_job!= nullptr&&pid== current_job->job_pid) {
             return current_job;
@@ -507,7 +508,7 @@ void KillCommand::execute() {
         std::cout << "smash error: kill: job-id "<<job_id<<" does not exist"<<endl;
     }
         kill(job->job_pid, -sig_num);
-    cout << "signal number"<< -sig_num<<" was sent to pid "<<job->job_pid <<endl;
+    cout << "signal number "<< -sig_num<<" was sent to pid "<<job->job_pid <<endl;
 }
 
 ExternalCommand::ExternalCommand(const char* cmd_line) : Command(cmd_line) {}

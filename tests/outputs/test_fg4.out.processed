@@ -1,0 +1,24 @@
+smash> submitted by Eran
+smash> smash error: fg: job-id 0 does not exist
+smash> smash error: fg: job-id 5 does not exist
+smash> smash> smash> smash error: fg: invalid arguments
+smash> sleep 200& : 2
+smash: got Ctrl-Z
+smash: process 6 was stopped
+smash> [5] sleep 500& : 4 X secs
+[2] sleep 200& : 6 X secs (stopped)
+smash> sleep 500& : 5
+smash: got Ctrl-C
+smash: process 4 was killed
+smash> [5] sleep 500& : 4 X secs
+[2] sleep 200& : 6 X secs (stopped)
+smash> smash> sleep 600& : 6
+smash: got Ctrl-Z
+smash: process 56675 was stopped
+smash> [5] sleep 500& : 4 X secs
+[2] sleep 200& : 6 X secs (stopped)
+[6] sleep 600& : 56675 X secs (stopped)
+smash> sending SIGKILL signal to 6 jobs:
+4: sleep 500&
+6: sleep 200&
+56675: sleep 600&

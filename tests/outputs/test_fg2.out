@@ -1,0 +1,16 @@
+smash> smash> smash> smash> smash> smash> sleep 300& : 3
+smash: got Ctrl-C
+smash: process 6578 was killed
+smash> sleep 100& : 1
+smash: got Ctrl-C
+smash: process 6575 was killed
+smash> sleep 200& : 2
+smash: got Ctrl-C
+smash: process 6577 was killed
+smash> sleep 400& : 4
+smash: got Ctrl-C
+smash: process 6579 was killed
+smash> sleep 500& : 5
+smash: got Ctrl-Z
+smash: process 6580 was stopped
+smash> 

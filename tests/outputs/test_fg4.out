@@ -1,0 +1,8 @@
+smash> submitted by Eran
+smash> smash error: fg: job-id 0 does not exist
+smash> smash error: fg: job-id 1 does not exist
+smash> smash> smash> smash error: fg: invalid arguments
+smash> sleep 200& : 2
+smash: got Ctrl-Z
+smash: process 6735 was stopped
+smash> 

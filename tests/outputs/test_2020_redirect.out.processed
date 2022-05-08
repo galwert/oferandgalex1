@@ -1,0 +1,50 @@
+smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash pid is 1
+smash> smash> smash pid is 1
+smash> smash> smash> smash> > mypid
+> new
+mypid
+new
+smash> smash> [0] sleep 100& : 11172 -0 secs
+smash> smash> smash error: kill: invalid arguments
+smash> smash> smash error: kill: invalid arguments
+smash> smash> > mypid
+> new
+k
+mypid
+new
+s
+t
+smash> smash> smash> > mypid
+> new
+k
+mypid
+new
+p
+s
+t
+smash> smash> smash> before
+smash> smash> smash> smash> smash> > mypid
+> new
+k
+mypid
+p
+s
+t
+smash> smash> smash> > mypid
+> new
+k
+mypid
+new
+p
+s
+t
+smash> smash> smash> smash> > mypid
+> new
+k
+mypid
+new
+p
+s
+t
+smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> sending SIGKILL signal to 1 jobs:
+11172: sleep 100&

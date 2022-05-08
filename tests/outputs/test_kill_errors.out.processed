@@ -1,0 +1,11 @@
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash error: kill: invalid arguments
+smash> smash> signal number512 was sent to pid 16740
+smash> sending SIGKILL signal to 1 jobs:
+16740: sleep 4&
