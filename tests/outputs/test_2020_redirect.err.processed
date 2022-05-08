@@ -1,6 +1,6 @@
-/bin/bash: $'Ї~\232\230U': command not found
+/bin/bash: $'\320\027\332S\365U': command not found
 smash error: open failed: Permission denied
-/bin/bash: $'\240\217~\232\230U': command not found
+/bin/bash: $'\240\037\332S\365U': command not found
 smash error: open failed: Permission denied
 smash error: open failed: No such file or directory
 smash error: open failed: No such file or directory

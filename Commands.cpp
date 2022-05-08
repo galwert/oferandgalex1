@@ -210,6 +210,7 @@ void ChangeDirCommand::execute()
     if(chdir(newdir.c_str())==-1)
     {
         perror("smash error: chdir failed");
+        return; 
     }
     smash.last_working_directory = new_prev_dir;
 }
@@ -315,7 +316,7 @@ void QuitCommand::execute() {
                 counter++;
             }
         }
-        cout << "sending SIGKILL signal to " << counter << " jobs:" << endl;
+        cout << "smash: sending SIGKILL signal to " << counter << " jobs:" << endl;
         SmallShell::getInstance().jobsList.killAllJobs();
     }
     exit(0);
@@ -341,7 +342,8 @@ void JobsList::addJob(const char * cmd,int pid, JobStatus isStopped) {
     list->at(job_id) = new JobEntry();
     list->at(job_id)->job_pid = pid;
     list->at(job_id)->job_id = job_id;
-    list->at(job_id)->discript =(char*)malloc(sizeof(char )*COMMAND_ARGS_MAX_LENGTH);
+    //list->at(job_id)->discript =(char*)malloc(sizeof(char )*COMMAND_ARGS_MAX_LENGTH);
+    list->at(job_id)->discript = new char();
     strcpy(list->at(job_id)->discript, cmd);
     list->at(job_id)->job_status=isStopped;
     list->at(job_id)->insert_time = time(nullptr); //add stop_time
@@ -533,14 +535,6 @@ void ExternalCommand::execute()
         strcpy(cmd_modified_line,cmd_line);
         if (_isBackgroundComamnd(cmd_line)) {
             _removeBackgroundSign(cmd_modified_line);
-//            char** args_array=new char *[COMMAND_MAX_ARGS];
-//            num_of_args = _parseCommandLine(cmd_modified_line, args_array);
-//            for (int i = 0; i < num_of_args; ++i)
-//            {
-//                arguments[i] = args_array[i];
-//            }
-//            this->num_of_args =num_of_args;
-//            this->arguments = args_array;
         }
         char * full_array []= {(char*)"/bin/bash", (char*)"-c",(char *)cmd_modified_line, nullptr};
         if(execv("/bin/bash", full_array)== -1)
@@ -553,17 +547,6 @@ void ExternalCommand::execute()
     {
         //god-father
     if (_isBackgroundComamnd(cmd_line)) {
-//        char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
-//        strcpy(cmd_modified_line,cmd_line);
-//        _removeBackgroundSign(cmd_modified_line);
-//        char** args_array=new char *[COMMAND_MAX_ARGS];
-//        num_of_args = _parseCommandLine(cmd_modified_line, args_array);
-//        for (int i = 0; i < num_of_args; ++i)
-//        {
-//            arguments[i] = args_array[i];
-//        }
-//        this->num_of_args =num_of_args;
-//        this->arguments = args_array;
         smash.jobsList.addJob(cmd_line, p, bg);
         smash.fg_pid=EMPTY_FG;
     }
