@@ -2,25 +2,48 @@
 #include <signal.h>
 #include "signals.h"
 #include "Commands.h"
-
+#include <string.h>
 using namespace std;
+const std::string WHITESPACE = " \n\r\t\f\v";
+string _ltrim1(const std::string& s)
+{
+    size_t start = s.find_first_not_of(WHITESPACE);
+    return (start == std::string::npos) ? "" : s.substr(start);
+}
+
+string _rtrim1(const std::string& s)
+{
+    size_t end = s.find_last_not_of(WHITESPACE);
+    return (end == std::string::npos) ? "" : s.substr(0, end + 1);
+}
+
+string _trim1(const std::string& s)
+{
+    return _rtrim1(_ltrim1(s));
+}
 
 void ctrlZHandler(int sig_num) {
-	cout << "smash: got ctrl-Z" << endl;
+	std::cout << "smash: got ctrl-Z" << endl;
   SmallShell& smash = SmallShell::getInstance();
   if (smash.fg_pid == EMPTY_FG) {
     return;
   }
-  if (smash.jobsList.getJobByPid(smash.fg_pid) == nullptr) {
-    smash.jobsList.addJob(smash.curr_cmd->cmd_line,smash.fg_pid, stopped);
+  int job_id=smash.jobsList.getJobByPid(smash.fg_pid);
+  if(job_id==0)
+  {
+      char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
+      strcpy(cmd_modified_line,smash.curr_cmd->cmd_line);
+      strcpy(cmd_modified_line,_trim1(cmd_modified_line).c_str());
+      smash.jobsList.addJob(cmd_modified_line, smash.fg_pid, stopped);
+      //smash.jobsList.addJob(smash.curr_cmd->cmd_line, smash.fg_pid, stopped);
   }
-
-    smash.jobsList.getJobByPid(smash.fg_pid)->StopJob();
+    job_id=smash.jobsList.getJobByPid(smash.fg_pid);
+    smash.jobsList.List->at(job_id)->StopJob();
   if (kill(smash.fg_pid,SIGSTOP) == -1) {
     perror("smash error: kill failed");
     return;
   }
-  cout << "smash: process " << smash.fg_pid << " was stopped" << endl;
+  std::cout << "smash: process " << smash.fg_pid << " was stopped" << endl;
   smash.fg_pid = EMPTY_FG;
 }
 
@@ -35,6 +58,11 @@ void ctrlCHandler(int sig_num) {
     return;
   }
   cout << "smash: process " << smash.fg_pid << " was killed" << endl;
+    int job_id=smash.jobsList.getJobByPid(smash.fg_pid);
+  if(job_id!= 0)
+  {
+      smash.jobsList.List->at(job_id)= nullptr;
+  }
   smash.fg_pid = EMPTY_FG;
 }
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="skeleton_smash" targetName="skeleton_smash" />
+      <config projectName="smash" targetName="smash" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -12,10 +12,162 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf2716db-e823-4126-9bc5-06a11a2f42c4" name="Changes" comment="gdgdgdgg">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Commands.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Commands.h" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CompilerIdC/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/skeleton_smash.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/skeleton_smash.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/skeleton_smash.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/skeleton_smash.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/skeleton_smash.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/skeleton_smash.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/skeleton_smash.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/skeleton_smash.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/skeleton_smash.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/signals.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/signals.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smash" beforeDir="false" afterPath="$PROJECT_DIR$/smash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_chprompt.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_chprompt.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_jobs.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_jobs.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_kill.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_kill.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_redirect.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_redirect.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_showpid.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_showpid.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_timeout.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_timeout.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg2.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_bg2.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_bg2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg5.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg5.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg_errors.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg_errors.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd3.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd3.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd_fail.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd_fail.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_chprompt.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_chprompt.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_external1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_external1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg3.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg3.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg4.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg4.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg5.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg5.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg_errors.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg_errors.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_input1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_input1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_input_almog.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_input_almog.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs4.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs4.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill5.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill5.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill_errors.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill_errors.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill_jobs.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill_jobs.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_params1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_params1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pipe2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pipe2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pipe4.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pipe4.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pwd.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pwd.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pwd1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pwd1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill3.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill3.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill4.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill4.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitnojobs1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitnojobs1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitnojobs2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitnojobs2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection3.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection3.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection_permissions.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection_permissions.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_showpid1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_showpid1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_showpid2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_showpid2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_folders.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_folders.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_invalid_args.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_invalid_args.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_new_line.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_new_line.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_no_file.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_no_file.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_timeout1.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_timeout1.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_timeout2.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_timeout2.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_touch.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_touch.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_touch_invalid_args_amount.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_touch_invalid_args_amount.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_touch_no_file.err.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_touch_no_file.out.processed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/runner/runner.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tests/runner/runner.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +212,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
@@ -70,7 +223,12 @@
     <property name="structure.view.defaults.are.configured" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="skeleton_smash" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="skeleton_smash" TARGET_NAME="skeleton_smash" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="skeleton_smash" RUN_TARGET_NAME="skeleton_smash">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="smash" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="true" REDIRECT_INPUT_PATH="$PROJECT_DIR$/tests/inputs/test_bg5.txt" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="smash" TARGET_NAME="smash" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="smash" RUN_TARGET_NAME="smash">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -99,6 +257,8 @@
       <workItem from="1651651442518" duration="15227000" />
       <workItem from="1651673597515" duration="121000" />
       <workItem from="1651673738059" duration="3066000" />
+      <workItem from="1652011122742" duration="25931000" />
+      <workItem from="1652080336069" duration="6945000" />
     </task>
     <task id="LOCAL‎00001" summary="added few things">
       <created>1650814853137</created>
@@ -166,6 +326,11 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">

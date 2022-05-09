@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1"
+CMAKE_SOURCE_DIR = /mnt/c/Users/galwe/OneDrive/Desktop/technion/ActivationSystems/oferandgalex1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug"
+CMAKE_BINARY_DIR = /mnt/c/Users/galwe/OneDrive/Desktop/technion/ActivationSystems/oferandgalex1/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles" "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/galwe/OneDrive/Desktop/technion/ActivationSystems/oferandgalex1/cmake-build-debug/CMakeFiles /mnt/c/Users/galwe/OneDrive/Desktop/technion/ActivationSystems/oferandgalex1/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/galwe/OneDrive/Desktop/technion/סמסטר ד/מערכות הפעלה/hw1/skeleton_smash/oferandgalex1/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/galwe/OneDrive/Desktop/technion/ActivationSystems/oferandgalex1/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named skeleton_smash
+# Target rules for targets named smash
 
 # Build rule for target.
-skeleton_smash: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 skeleton_smash
-.PHONY : skeleton_smash
+smash: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 smash
+.PHONY : smash
 
 # fast build rule for target.
-skeleton_smash/fast:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/build
-.PHONY : skeleton_smash/fast
+smash/fast:
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/build
+.PHONY : smash/fast
 
 Commands.o: Commands.cpp.o
 
@@ -129,7 +129,7 @@ Commands.o: Commands.cpp.o
 
 # target to build an object file
 Commands.cpp.o:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/Commands.cpp.o
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/Commands.cpp.o
 .PHONY : Commands.cpp.o
 
 Commands.i: Commands.cpp.i
@@ -138,7 +138,7 @@ Commands.i: Commands.cpp.i
 
 # target to preprocess a source file
 Commands.cpp.i:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/Commands.cpp.i
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/Commands.cpp.i
 .PHONY : Commands.cpp.i
 
 Commands.s: Commands.cpp.s
@@ -147,7 +147,7 @@ Commands.s: Commands.cpp.s
 
 # target to generate assembly for a file
 Commands.cpp.s:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/Commands.cpp.s
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/Commands.cpp.s
 .PHONY : Commands.cpp.s
 
 signals.o: signals.cpp.o
@@ -156,7 +156,7 @@ signals.o: signals.cpp.o
 
 # target to build an object file
 signals.cpp.o:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/signals.cpp.o
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/signals.cpp.o
 .PHONY : signals.cpp.o
 
 signals.i: signals.cpp.i
@@ -165,7 +165,7 @@ signals.i: signals.cpp.i
 
 # target to preprocess a source file
 signals.cpp.i:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/signals.cpp.i
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/signals.cpp.i
 .PHONY : signals.cpp.i
 
 signals.s: signals.cpp.s
@@ -174,7 +174,7 @@ signals.s: signals.cpp.s
 
 # target to generate assembly for a file
 signals.cpp.s:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/signals.cpp.s
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/signals.cpp.s
 .PHONY : signals.cpp.s
 
 smash.o: smash.cpp.o
@@ -183,7 +183,7 @@ smash.o: smash.cpp.o
 
 # target to build an object file
 smash.cpp.o:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/smash.cpp.o
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/smash.cpp.o
 .PHONY : smash.cpp.o
 
 smash.i: smash.cpp.i
@@ -192,7 +192,7 @@ smash.i: smash.cpp.i
 
 # target to preprocess a source file
 smash.cpp.i:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/smash.cpp.i
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/smash.cpp.i
 .PHONY : smash.cpp.i
 
 smash.s: smash.cpp.s
@@ -201,7 +201,7 @@ smash.s: smash.cpp.s
 
 # target to generate assembly for a file
 smash.cpp.s:
-	$(MAKE) -f CMakeFiles/skeleton_smash.dir/build.make CMakeFiles/skeleton_smash.dir/smash.cpp.s
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/smash.cpp.s
 .PHONY : smash.cpp.s
 
 # Help Target
@@ -212,7 +212,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... skeleton_smash"
+	@echo "... smash"
 	@echo "... Commands.o"
 	@echo "... Commands.i"
 	@echo "... Commands.s"
