@@ -596,7 +596,10 @@ void RedirectionCommand::execute() {
     string cmd_line_s= string(cmd_line);
     bool is_append=cmd_line_s.find(">>") != string::npos;
     int first_part=(int)cmd_line_s.find('>');
-    Command *cmd=smash.CreateCommand((const char *)cmd_line_s.substr(0,first_part).c_str());
+    char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
+    strcpy(cmd_modified_line,cmd_line_s.substr(0,first_part).c_str());
+    Command *cmd=smash.CreateCommand(cmd_modified_line);
+    //Command *cmd=smash.CreateCommand((const char *)cmd_line_s.substr(0,first_part).c_str());
     string txt_file=_trim(cmd_line_s.substr(first_part));
     if(txt_file[0]=='>')
     {
@@ -619,11 +622,7 @@ void RedirectionCommand::execute() {
         perror("smash error: dup2 failed");
         return;
     }
-    if(close (fd)==-1)
-    {
-        perror("smash error: close failed");
-        return;
-    }
+    
     cmd->execute();
 
     if(dup2(output_channel,1) == -1)
@@ -632,6 +631,11 @@ void RedirectionCommand::execute() {
         return;
     }
     if(close(output_channel) == -1) {
+        perror("smash error: close failed");
+        return;
+    }
+    if(close (fd)==-1)
+    {
         perror("smash error: close failed");
         return;
     }
