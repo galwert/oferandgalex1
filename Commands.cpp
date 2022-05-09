@@ -631,7 +631,7 @@ void PipeCommand::execute() {
     Command *cmd1;
     Command *cmd2;
     SmallShell &smash = SmallShell::getInstance();
-    string cmd_line_s= string(cmd_line);
+    string cmd_line_s= _trim(string(cmd_line));
 
     if(cmd_line_s.find("|&") != string::npos)
     {
@@ -669,8 +669,12 @@ void PipeCommand::execute() {
     else
     {
         int first_part=(int)cmd_line_s.find('|');
-        cmd1=smash.CreateCommand((const char *)cmd_line_s.substr(0,first_part).c_str());
-        cmd2=smash.CreateCommand((const char *)cmd_line_s.substr(first_part+1).c_str());
+        char cmd_modified_line1[COMMAND_ARGS_MAX_LENGTH];
+        char cmd_modified_line2[COMMAND_ARGS_MAX_LENGTH];
+        strcpy(cmd_modified_line1,cmd_line_s.substr(0,first_part).c_str());
+        cmd1=smash.CreateCommand(cmd_modified_line1);
+        strcpy(cmd_modified_line2,cmd_line_s.substr(first_part+1,cmd_line_s.length()-first_part).c_str());
+        cmd2=smash.CreateCommand(cmd_modified_line2);
         int output_channel= dup(1);//duplicate stdout
         if(output_channel==-1)
         {
@@ -683,11 +687,13 @@ void PipeCommand::execute() {
             perror("smash error: dup failed");
             return;
         }
-        if(dup2 (output_channel,input_channel)==-1)
+        if(dup2 (output_channel,1)==-1)
         {
             perror("smash error: dup2 failed");
             return;
         }
+        cmd1->execute();
+        cmd2->execute();
         if(close (input_channel)==-1)
         {
             perror("smash error: close failed");
@@ -699,8 +705,7 @@ void PipeCommand::execute() {
             return;
         }
     }
-    cmd1->execute();
-    cmd2->execute();
+
 }
 
 TailCommand::TailCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
