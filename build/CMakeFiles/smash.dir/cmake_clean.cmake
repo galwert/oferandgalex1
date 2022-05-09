@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
-  "../smash"
-  "../smash.pdb"
-  "CMakeFiles/smash.dir/Commands.cpp.o"
-  "CMakeFiles/smash.dir/signals.cpp.o"
   "CMakeFiles/smash.dir/smash.cpp.o"
+  "CMakeFiles/smash.dir/signals.cpp.o"
+  "CMakeFiles/smash.dir/Commands.cpp.o"
+  "../smash.pdb"
+  "../smash"
 )
 
 # Per-language clean rules from dependency scanning.
