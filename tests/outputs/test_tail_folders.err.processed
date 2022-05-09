@@ -1,2 +1,2 @@
-tail: error reading '..': Is a directory
-tail: error reading '/home/ofernis': Is a directory
+smash error: read failed: Is a directory
+smash error: open failed: No such file or directory

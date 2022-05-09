@@ -1,2 +1,2 @@
-touch: missing file operand
-Try 'touch --help' for more information.
+smash error: touch: invalid arguments: Success
+smash error: touch: invalid arguments: Invalid argument

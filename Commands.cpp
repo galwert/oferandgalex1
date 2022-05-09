@@ -135,6 +135,12 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     else if (firstWord=="quit") {
         return new QuitCommand(cmd_line);
     }
+    else if (firstWord=="tail") {
+        return new TailCommand(cmd_line);
+    }
+    else if (firstWord=="touch") {
+        return new TouchCommand(cmd_line);
+    }
     else {
         return new ExternalCommand(cmd_line);
     }
@@ -746,7 +752,7 @@ void TailCommand::execute() {
         }
         else if(num_of_args==2)
         {
-             lines_number=10;
+            lines_number=10;
             text_file=this->arguments[1];
         }
         else
@@ -764,32 +770,35 @@ void TailCommand::execute() {
     if(fd==-1)
     {
         perror("smash error: open failed");
-                return;
+        return;
     }
-    if(lseek(fd,0,SEEK_END))
+    if(lseek(fd,0,SEEK_CUR) == lseek(fd,0,SEEK_END))
     {
         perror("smash error: lseek failed");
+        return;
     }
-    char * buffer = new char [1];
-  int count_of_chars=0, count_of_lines=0;
+    char * buffer = new char[1];
+    int count_of_chars=0, count_of_lines=0;
     while(count_of_lines!=lines_number)
     {
-        if (!lseek(fd, --count_of_chars, SEEK_END))
+        if (lseek(fd, --count_of_chars, SEEK_END))
         {
             if(read(fd,buffer,1)==-1)
             {
                 perror("smash error: read failed");
+                return;
             }
-            if(strcmp(buffer,"/n")==0)
+            if(*buffer==10) //strcmp(buffer,"\n") why doesn't work??
             {
                 count_of_lines++;
             }
         }
         else
         {
-            if(lseek(fd,0,SEEK_SET))//reached the start of file
+            if(lseek(fd,0,SEEK_SET))//reached the start of file //should be added to if? lseek(fd,0,SEEK_CUR) == lseek(fd,0,SEEK_SET)
             {
                 perror("smash error: lseek failed");
+                return;
             }
         }
     }
@@ -804,14 +813,18 @@ void TailCommand::execute() {
         if(read1==-1)
         {
             perror("smash error: read failed");
+            return;
         }
         if(write(1,buffer,1)!=1)
         {
             perror("smash error: write failed");
+            return;
         }
     }
-    if(close(fd)!=1) {
+    if(close(fd)==-1)
+    {
         perror("smash error: close failed");
+        return;
     }
 }
 
@@ -823,6 +836,7 @@ void TouchCommand::execute() {
     if(this->num_of_args!=3)
     {
         perror("smash error: touch: invalid arguments");
+        return;
     }
     int secs,mins,hours,days,monts,years;
     std::stringstream ss(this->arguments[2]);
@@ -830,13 +844,16 @@ void TouchCommand::execute() {
     tm *tm2=new struct tm();
     tm2->tm_sec=secs;
 
-
     tm *tm1=new struct tm;
     strptime(this->arguments[2],"%d:%d:%d:%d:%d:%d:%d",tm1);
     utimbuf *buf{};
     buf->actime= reinterpret_cast<__time_t>(tm1);
     buf->modtime= reinterpret_cast<__time_t>(tm1);
-    utime(this->arguments[1],buf);
+    if(utime(this->arguments[1],buf)==-1)
+    {
+        perror("smash error: write failed");
+        return;
+    }
 }
 
 BuiltInCommand::BuiltInCommand(const char *cmd_line) : Command(cmd_line) {
