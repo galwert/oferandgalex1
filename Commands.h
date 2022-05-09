@@ -29,10 +29,7 @@ class BuiltInCommand : public Command {
 public:
     explicit BuiltInCommand(const char* cmd_line);
 
-    virtual ~BuiltInCommand()
-    {
-
-    }
+    virtual ~BuiltInCommand() {}
 };
 
 class ExternalCommand : public Command {

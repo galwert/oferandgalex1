@@ -498,8 +498,8 @@ void JobsCommand::execute() {
 KillCommand::KillCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {}
 
 void KillCommand::execute() {
-
     SmallShell &smash = SmallShell::getInstance();
+    smash.jobsList.removeFinishedJobs();
     JobsList::JobEntry *job;
     int job_id,sig_num;
     try {
@@ -526,7 +526,7 @@ void KillCommand::execute() {
         std::cerr << "smash error: kill: job-id "<<job_id<<" does not exist"<<endl;
         return;
     }
-        kill(job->job_pid, -sig_num);
+    kill(job->job_pid, -sig_num);
     std::cout << "signal number "<< -sig_num<<" was sent to pid "<<job->job_pid <<endl;
 }
 
@@ -569,7 +569,7 @@ void ExternalCommand::execute()
     if (_isBackgroundComamnd(cmd_line)) {
         char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
         strcpy(cmd_modified_line,cmd_line);
-        strcpy(cmd_modified_line,_trim(cmd_modified_line).c_str());
+        //strcpy(cmd_modified_line,_trim(cmd_modified_line).c_str());
         smash.jobsList.addJob(cmd_modified_line, p, bg);
         //smash.jobsList.addJob(cmd_line, p, bg);
         smash.fg_pid=EMPTY_FG;
@@ -602,9 +602,13 @@ void RedirectionCommand::execute() {
     {
         txt_file=txt_file.substr(1,txt_file.length());
     }
+    if(txt_file[0]=='>')
+    {
+        txt_file=txt_file.substr(1,txt_file.length());
+    }
     txt_file=_trim(txt_file);
     int output_channel= dup(1);
-    int fd=open(txt_file.c_str(),O_CREAT|O_WRONLY|(is_append ? O_APPEND:O_TRUNC),777);
+    int fd=open(txt_file.c_str(),O_CREAT|O_WRONLY|(is_append ? O_APPEND:O_TRUNC),0655);
     if(fd==-1)
     {
         perror("smash error: open failed");
@@ -753,11 +757,11 @@ void TailCommand::execute() {
         return;
     }
 
-    int fd=open(text_file.c_str(),O_RDONLY,777);
+    int fd=open(text_file.c_str(),O_RDONLY,0655);
     if(fd==-1)
     {
         perror("smash error: open failed");
-        return;
+                return;
     }
     if(lseek(fd,0,SEEK_END))
     {

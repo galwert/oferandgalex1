@@ -1,44 +1,34 @@
-smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash pid is 1
+smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash pid is 1
 smash> smash> smash pid is 1
-smash> smash> smash> smash> > mypid
-> new
-mypid
+smash pid is 1
+smash> smash> smash pid is 1
+smash> mypid
 new
-smash> smash> [1] sleep 100& : 2 X secs
-smash> smash> smash> smash> smash> smash> > mypid
-> new
-k
+smash> smash> smash> [1] sleep 100& : 2 X secs
+smash> smash> smash> smash> smash> k
 mypid
 new
 s
 t
-smash> smash> smash> > mypid
-> new
-k
+smash> smash> smash> k
 mypid
 new
 p
 s
 t
 smash> smash> smash> before
-smash> smash> smash> smash> smash> > mypid
-> new
-k
+smash> smash> smash> smash> smash> k
 mypid
 p
 s
 t
-smash> smash> smash> > mypid
-> new
-k
+smash> smash> smash> k
 mypid
 new
 p
 s
 t
-smash> smash> smash> smash> > mypid
-> new
-k
+smash> smash> smash> smash> k
 mypid
 new
 p
