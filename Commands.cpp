@@ -610,7 +610,7 @@ void RedirectionCommand::execute() {
         perror("smash error: open failed");
         return;
     }
-    if(dup2 (fd,output_channel)==-1)
+    if(dup2 (fd,1)==-1)
     {
         perror("smash error: dup2 failed");
         return;
@@ -621,6 +621,16 @@ void RedirectionCommand::execute() {
         return;
     }
     cmd->execute();
+
+    if(dup2(output_channel,1) == -1)
+    {
+        perror("smash error: dup2 failed");
+        return;
+    }
+    if(close(output_channel) == -1) {
+        perror("smash error: close failed");
+        return;
+    }
 }
 
 PipeCommand::PipeCommand(const char *cmd_line) : Command(cmd_line) {
