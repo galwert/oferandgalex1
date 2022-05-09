@@ -14,8 +14,6 @@
     <list default="true" id="bf2716db-e823-4126-9bc5-06a11a2f42c4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Commands.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smash" beforeDir="false" afterPath="$PROJECT_DIR$/smash" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +101,7 @@
       <workItem from="1652011122742" duration="25931000" />
       <workItem from="1652080336069" duration="9951000" />
       <workItem from="1652100299865" duration="245000" />
-      <workItem from="1652100570568" duration="1892000" />
+      <workItem from="1652100570568" duration="3159000" />
     </task>
     <task id="LOCAL‎00001" summary="added few things">
       <created>1650814853137</created>
@@ -165,7 +163,13 @@
       <option name="presentableId" value="LOCAL‎00010" />
       <updated>1652096807799</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL‎00011" summary="gdfgdg">
+      <created>1652103429847</created>
+      <option name="number" value="LOCAL‎00011" />
+      <option name="presentableId" value="LOCAL‎00011" />
+      <updated>1652103429847</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +215,8 @@
     <MESSAGE value="dfgdgfdg" />
     <MESSAGE value="gdgdgdgg" />
     <MESSAGE value="debugged built in and external" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugged built in and external" />
+    <MESSAGE value="gdfgdg" />
+    <option name="LAST_COMMIT_MESSAGE" value="gdfgdg" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -219,7 +224,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>677</line>
+          <line>681</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>

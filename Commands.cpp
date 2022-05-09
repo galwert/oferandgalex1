@@ -636,8 +636,12 @@ void PipeCommand::execute() {
     if(cmd_line_s.find("|&") != string::npos)
     {
         int first_part=(int)cmd_line_s.find("|&");
-        cmd1=smash.CreateCommand((const char *)cmd_line_s.substr(0,first_part).c_str());
-        cmd2=smash.CreateCommand((const char *)cmd_line_s.substr(first_part+2).c_str());
+        char cmd_modified_line1[COMMAND_ARGS_MAX_LENGTH];
+        char cmd_modified_line2[COMMAND_ARGS_MAX_LENGTH];
+        strcpy(cmd_modified_line1,cmd_line_s.substr(0,first_part).c_str());
+        cmd1=smash.CreateCommand(cmd_modified_line1);
+        strcpy(cmd_modified_line2,cmd_line_s.substr(first_part+2,cmd_line_s.length()-first_part).c_str());
+        cmd2=smash.CreateCommand(cmd_modified_line2);
         int output_channel= dup(2);//duplicate stderr
         if(output_channel==-1)
         {
@@ -650,7 +654,7 @@ void PipeCommand::execute() {
             perror("smash error: dup failed");
             return;
         }
-        if(dup2 (output_channel,input_channel)==-1)//
+        if(dup2 (output_channel,0)==-1)//
         {
             perror("smash error: dup2 failed");
             return;
