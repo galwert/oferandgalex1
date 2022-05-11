@@ -83,7 +83,7 @@ void alarmHandler(int sig_num) {
             break;
         }
     }
-    int lowest_alarm=2147483647;
+    int lowest_alarm=MAX_INT;
     for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); ++it) {
         if((*it)->duration-difftime(time(nullptr), (*it)->insert_time)<lowest_alarm)
         {

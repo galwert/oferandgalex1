@@ -12,6 +12,7 @@
 #define NOT_EXIST_IN_LIST -1
 #define EMPTY_FG -1
 #define NUM_OF_LINES 10
+#define MAX_INT 2147483647
 
 class Command {
 public:

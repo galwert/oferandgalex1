@@ -7,8 +7,6 @@
 #IncludeRegexTransform: 
 
 /home/ofernis/oferandgalex1/Commands.cpp
-unistd.h
--
 string.h
 -
 iostream
@@ -29,11 +27,17 @@ time.h
 -
 fcntl.h
 /home/ofernis/oferandgalex1/fcntl.h
+list
+-
 
 /home/ofernis/oferandgalex1/Commands.h
 vector
 -
 cctype
+-
+list
+-
+unistd.h
 -
 
 /home/ofernis/oferandgalex1/signals.cpp

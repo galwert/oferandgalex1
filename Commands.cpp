@@ -861,21 +861,20 @@ void TouchCommand::execute() {
     }
     int secs,mins,hours,days,months,years;
     std::stringstream ss(this->arguments[2]);
-    
-    //ss>>secs>>mins>>hours>>days>>months>>years;
-    struct tm tm1;
-    tm1.tm_sec = secs;
-    tm1.tm_min = mins;
-    tm1.tm_hour = hours;
-    tm1.tm_mday = days;
-    tm1.tm_mon = months - 1;
-    tm1.tm_year = years - 1900;
+    char seperator = ':';
+    ss>>secs>>seperator>>mins>>seperator>>hours>>seperator>>days>>seperator>>months>>seperator>>years;
+    struct tm* tm1 = new tm();
+    tm1->tm_sec = secs;
+    tm1->tm_min = mins;
+    tm1->tm_hour = hours;
+    tm1->tm_mday = days;
+    tm1->tm_mon = months - 1;
+    tm1->tm_year = years - 1900;
 
-    tm *tm1=new struct tm;
-    strptime(this->arguments[2],"%d:%d:%d:%d:%d:%d:%d",tm1);
+    time_t tm_ob = mktime(tm1);
     utimbuf *buf{};
-    buf->actime= reinterpret_cast<__time_t>(tm1);
-    buf->modtime= reinterpret_cast<__time_t>(tm1);
+    buf->actime= (tm_ob);
+    buf->modtime= (tm_ob);
     if(utime(this->arguments[1],buf)==-1)
     {
         perror("smash error: write failed");
@@ -892,7 +891,7 @@ TimeOut::TimeOut(const char *cmd_line) : BuiltInCommand(cmd_line) {
 }
 
 void TimeOut::execute() {
-    int time,i=2;
+    int timeout,i=2;
     string cmd_line_s=string(cmd_line);
     SmallShell& smash = SmallShell::getInstance();
 try
@@ -900,8 +899,8 @@ try
     if(num_of_args<3) {
         throw std::invalid_argument("");
     }
-    time= stoi(arguments[1]);
-    if(time<=0)
+    timeout= stoi(arguments[1]);
+    if(timeout<=0)
     {
         throw std::invalid_argument("");
     }
@@ -945,8 +944,8 @@ try
     else
     {
 
-        smash.timeOut.push_back(new AlarmNote(p,time, _trimr(cmd_line).c_str()));
-        int lowest_alarm=2147483647;
+        smash.timeOut.push_back(new AlarmNote(p,timeout, _trimr(cmd_line).c_str()));
+        int lowest_alarm=timeout;
         for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); ++it) {
             if((*it)->duration-difftime(std::time(nullptr), (*it)->insert_time)<lowest_alarm)
             {
