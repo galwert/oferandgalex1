@@ -11,9 +11,100 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf2716db-e823-4126-9bc5-06a11a2f42c4" name="Changes" comment="">
+    <list default="true" id="bf2716db-e823-4126-9bc5-06a11a2f42c4" name="Changes" comment="finished timeout?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Commands.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.16.3/CompilerIdCXX/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signals.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/signals.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smash" beforeDir="false" afterPath="$PROJECT_DIR$/smash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_chprompt.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_chprompt.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_jobs.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_jobs.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_jobs.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_jobs.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_kill.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_kill.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_kill.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_kill.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_redirect.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_redirect.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_redirect.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_redirect.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_showpid.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_showpid.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_showpid.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_showpid.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_timeout.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_timeout.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_2020_timeout.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_2020_timeout.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_bg1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg2.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_bg2.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_bg2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg5.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_bg5.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_bg_errors.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_bg_errors.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_cd.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd1.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_cd1.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd2.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_cd2.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_cd2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd3.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_cd3.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd3.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_cd3.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd_fail.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_cd_fail.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_cd_fail.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_cd_fail.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_external1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_external1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_fg.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_fg.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_fg2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg3.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_fg3.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg4.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_fg4.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg4.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_fg4.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg5.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_fg5.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_fg_errors.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_fg_errors.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_input1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_input1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_input_almog.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_input_almog.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_jobs.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_jobs1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_jobs2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_jobs4.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_jobs4.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_kill1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill5.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_kill5.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill_errors.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_kill_errors.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill_errors.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_kill_errors.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill_jobs.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_kill_jobs.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_kill_jobs.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_kill_jobs.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_params1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_params1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pipe2.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_pipe2.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pipe2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_pipe2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pipe4.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_pipe4.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pipe4.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_pipe4.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pwd.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_pwd.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_pwd1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_pwd1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_quitkill1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_quitkill2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitkill3.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_quitkill3.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_quitnojobs2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_quitnojobs2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_redirection1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection3.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_redirection3.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_redirection_permissions.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_redirection_permissions.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_showpid1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_showpid1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_showpid2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_showpid2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_tail.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail2.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_tail2.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_tail2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_folders.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_tail_folders.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_folders.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_tail_folders.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_invalid_args.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_tail_invalid_args.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_new_line.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_tail_new_line.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_tail_no_file.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_tail_no_file.err.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_timeout1.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_timeout1.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_timeout2.out.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_timeout2.out.processed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/outputs/test_touch_invalid_args_amount.err.processed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/outputs/test_touch_invalid_args_amount.err.processed" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +131,14 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Commands.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CMakeLists.txt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/signals.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:////wsl$/Ubuntu-18.04/usr/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Commands.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/signals.cpp" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -63,13 +162,13 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Activation/oferandgalex1" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
     <property name="structure.view.defaults.are.configured" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="smash" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="true" REDIRECT_INPUT_PATH="$PROJECT_DIR$/tests/inputs/test_pipe2.txt" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="smash" TARGET_NAME="smash" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="smash" RUN_TARGET_NAME="smash">
+    <configuration name="smash" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" REDIRECT_INPUT_PATH="$PROJECT_DIR$/tests/inputs/test_pipe2.txt" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="smash" TARGET_NAME="smash" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="smash" RUN_TARGET_NAME="smash">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -102,6 +201,10 @@
       <workItem from="1652080336069" duration="9951000" />
       <workItem from="1652100299865" duration="245000" />
       <workItem from="1652100570568" duration="3159000" />
+      <workItem from="1652169816329" duration="2800000" />
+      <workItem from="1652172988898" duration="4454000" />
+      <workItem from="1652191923396" duration="11202000" />
+      <workItem from="1652265307931" duration="7275000" />
     </task>
     <task id="LOCAL‎00001" summary="added few things">
       <created>1650814853137</created>
@@ -169,7 +272,13 @@
       <option name="presentableId" value="LOCAL‎00011" />
       <updated>1652103429847</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="finished timeout?">
+      <created>1652269143979</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1652269143979</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,19 +325,9 @@
     <MESSAGE value="gdgdgdgg" />
     <MESSAGE value="debugged built in and external" />
     <MESSAGE value="gdfgdg" />
-    <option name="LAST_COMMIT_MESSAGE" value="gdfgdg" />
+    <MESSAGE value="finished timeout?" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished timeout?" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>681</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

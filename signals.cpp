@@ -3,6 +3,7 @@
 #include "signals.h"
 #include "Commands.h"
 #include <string.h>
+#include <sys/wait.h>
 using namespace std;
 const std::string WHITESPACE = " \n\r\t\f\v";
 string _ltrim1(const std::string& s)
@@ -69,16 +70,24 @@ void ctrlCHandler(int sig_num) {
 void alarmHandler(int sig_num) {
   cout << "smash: got an alarm" << endl;
     SmallShell& smash = SmallShell::getInstance();
+    smash.jobsList.removeFinishedJobs();
     for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); ++it)
     {
         if(difftime(time(nullptr), (*it)->insert_time)>=(*it)->duration)
         {
+            cout << "smash: "<<(*it)->discript<<" timed out!" << endl;
 
+            //int wait_res=waitpid((*it)->pid, nullptr, WNOHANG);
+            int job_id=smash.jobsList.getJobByPid((*it)->pid);
+            if (smash.jobsList.List->at(job_id)== nullptr) {
+                smash.timeOut.erase(it);
+                break;
+            }
             if(kill((*it)->pid, SIGKILL) == -1){
                 perror("smash error: kill failed");
                 return;
             }
-            cout << "smash: "<<(*it)->discript<<" timed out!" << endl;
+
             smash.timeOut.erase(it);
             break;
         }

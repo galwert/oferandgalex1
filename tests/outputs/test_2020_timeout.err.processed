@@ -1,4 +1,10 @@
 smash error: timeout: invalid arguments
 smash error: timeout: invalid arguments
 smash error: timeout: invalid arguments
+<<<<<<< HEAD
 smash error: kill failed: No such process
+=======
+timeout: failed to run command ‘../my_sleep’: No such file or directory
+timeout: failed to run command ‘../my_sleep’: No such file or directory
+timeout: failed to run command ‘../my_sleep’: No such file or directory
+>>>>>>> 8a3e910050fd3056e46971f47aa998eb408807b9

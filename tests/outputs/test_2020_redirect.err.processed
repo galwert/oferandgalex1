@@ -3,3 +3,4 @@ smash error: kill: invalid arguments
 smash error: open failed: No such file or directory
 smash error: open failed: No such file or directory
 smash error: open failed: Permission denied
+/bin/bash: ../my_sleep: /bin/sh^M: bad interpreter: No such file or directory

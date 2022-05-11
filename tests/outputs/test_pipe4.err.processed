@@ -1,1 +1,2 @@
-should_not_be_filtered
+/bin/bash: ./echo_stderr.sh: /bin/bash^M: bad interpreter: No such file or directory
+runner: Timeout, killing child
