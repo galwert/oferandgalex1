@@ -68,7 +68,28 @@ void ctrlCHandler(int sig_num) {
 
 void alarmHandler(int sig_num) {
   cout << "smash: got an alarm" << endl;
-  //TODO: search for the command caused the alarm and send SIGKILL to its process
-  //cout << "smash: [command-line] timed out!" << endl;
-}
+    SmallShell& smash = SmallShell::getInstance();
+    for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); ++it)
+    {
+        if(difftime(time(nullptr), (*it)->insert_time)>=(*it)->duration)
+        {
+
+            if(kill((*it)->pid, SIGKILL) == -1){
+                perror("smash error: kill failed");
+                return;
+            }
+            cout << "smash: "<<(*it)->discript<<" timed out!" << endl;
+            smash.timeOut.erase(it);
+            break;
+        }
+    }
+    int lowest_alarm=2147483647;
+    for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); ++it) {
+        if((*it)->duration-difftime(time(nullptr), (*it)->insert_time)<lowest_alarm)
+        {
+            lowest_alarm=(*it)->duration-difftime(time(nullptr), (*it)->insert_time);
+            }
+        }
+    alarm(lowest_alarm);
+    }
 
