@@ -793,38 +793,45 @@ void TailCommand::execute() {
         perror("smash error: open failed");
         return;
     }
-    if(lseek(fd,0,SEEK_CUR) == lseek(fd,0,SEEK_END))
+    int init_pos = lseek(fd,0,SEEK_END);
+    if(init_pos == -1) 
     {
         perror("smash error: lseek failed");
+        return;
+    }
+    else if(init_pos == 0)
+    {
         return;
     }
     char * buffer = new char[1];
     int count_of_chars=0, count_of_lines=0;
     while(count_of_lines!=lines_number)
     {
-        if (lseek(fd, --count_of_chars, SEEK_END))
+        int dist_from_bgn_of_file = lseek(fd, --count_of_chars, SEEK_END);
+        if (dist_from_bgn_of_file == -1)
+        {
+            perror("smash error: lseek failed");
+            return;
+        }
+        else if (dist_from_bgn_of_file > 0)
         {
             if(read(fd,buffer,1)==-1)
             {
                 perror("smash error: read failed");
                 return;
             }
-            if(*buffer==10) //strcmp(buffer,"\n") why doesn't work??
+            if(*buffer=='\n') //strcmp(buffer,"\n") why doesn't work??
             {
                 count_of_lines++;
             }
         }
         else
         {
-            if(lseek(fd,0,SEEK_SET))//reached the start of file //should be added to if? lseek(fd,0,SEEK_CUR) == lseek(fd,0,SEEK_SET)
-            {
-                perror("smash error: lseek failed");
-                return;
-            }
+            break;
         }
     }
     long read1;
-    while (true)//add perror if read fails not EOF
+    while (true)
     {
        read1=read(fd,buffer,1);
         if(read1==0)
