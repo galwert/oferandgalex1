@@ -1,4 +1,4 @@
-#include <unistd.h>
+
 #include <string.h>
 #include <iostream>
 #include <vector>
@@ -9,6 +9,7 @@
 #include <utime.h>
 #include <time.h>
 #include "fcntl.h"
+#include <list>
 // #include <utime.h>
 
 
@@ -43,7 +44,22 @@ string _trim(const std::string& s)
 {
     return _rtrim(_ltrim(s));
 }
+string _ltrimr(const std::string& s)
+{
+    size_t start = s.find_first_not_of("\r\n");
+    return (start == std::string::npos) ? "" : s.substr(start);
+}
 
+string _rtrimr(const std::string& s)
+{
+    size_t end = s.find_last_not_of("\r\n");
+    return (end == std::string::npos) ? "" : s.substr(0, end + 1);
+}
+
+string _trimr(const std::string& s)
+{
+    return _rtrimr(_ltrimr(s));
+}
 int _parseCommandLine(const char* cmd_line, char** args) {
     FUNC_ENTRY()
     int i = 0;
@@ -86,6 +102,7 @@ void _removeBackgroundSign(char* cmd_line) {
 
 SmallShell::SmallShell():jobsList() {
 this->jobsList.List->resize(MAX_NUM_OF_JOBS + 1);
+this->timeOut= std::list<AlarmNote *>();/////
 this->prompt="smash";
 this->last_working_directory="";
 this->pid=getpid();
@@ -140,6 +157,9 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     }
     else if (firstWord=="touch") {
         return new TouchCommand(cmd_line);
+    }
+    else if (firstWord=="timeout") {
+        return new TimeOut(cmd_line);
     }
     else {
         return new ExternalCommand(cmd_line);
@@ -349,7 +369,7 @@ void JobsList::addJob(const char * cmd,int pid, JobStatus isStopped) {
     list->at(job_id)->job_id = job_id;
     //char *new_dis=(char*)malloc(sizeof(char )*COMMAND_ARGS_MAX_LENGTH);
 
-    string help(_rtrim(cmd));
+    string help(cmd);
     list->at(job_id)->discript = new char[help.length()];
     strcpy( list->at(job_id)->discript, cmd);
     //list->at(job_id)->discript=new_dis;
@@ -575,7 +595,7 @@ void ExternalCommand::execute()
     if (_isBackgroundComamnd(cmd_line)) {
         char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
         strcpy(cmd_modified_line,cmd_line);
-        //strcpy(cmd_modified_line,_trim(cmd_modified_line).c_str());
+        strcpy(cmd_modified_line,_trimr(cmd_modified_line).c_str());
         smash.jobsList.addJob(cmd_modified_line, p, bg);
         //smash.jobsList.addJob(cmd_line, p, bg);
         smash.fg_pid=EMPTY_FG;
@@ -587,6 +607,7 @@ void ExternalCommand::execute()
                 perror("smash error: waitpid failed");
                 return;
             }
+            //waitpid(p,nullptr,0);
         smash.fg_pid = EMPTY_FG;
         }
     }
@@ -697,9 +718,9 @@ void PipeCommand::execute() {
         int first_part=(int)cmd_line_s.find('|');
         char cmd_modified_line1[COMMAND_ARGS_MAX_LENGTH];
         char cmd_modified_line2[COMMAND_ARGS_MAX_LENGTH];
-        strcpy(cmd_modified_line1,cmd_line_s.substr(0,first_part).c_str());
+        strcpy(cmd_modified_line1, _trimr(cmd_line_s.substr(0,first_part)).c_str());
         cmd1=smash.CreateCommand(cmd_modified_line1);
-        strcpy(cmd_modified_line2,cmd_line_s.substr(first_part+1,cmd_line_s.length()-first_part).c_str());
+        strcpy(cmd_modified_line2,_trimr(cmd_line_s.substr(first_part+1,cmd_line_s.length()-first_part)).c_str());
         cmd2=smash.CreateCommand(cmd_modified_line2);
         int output_channel= dup(1);//duplicate stdout
         if(output_channel==-1)
@@ -865,3 +886,96 @@ void TouchCommand::execute() {
 BuiltInCommand::BuiltInCommand(const char *cmd_line) : Command(cmd_line) {
 
 }
+///////
+TimeOut::TimeOut(const char *cmd_line) : BuiltInCommand(cmd_line) {
+
+}
+
+void TimeOut::execute() {
+    int time,i=2;
+    string cmd_line_s=string(cmd_line);
+    SmallShell& smash = SmallShell::getInstance();
+try
+{
+    if(num_of_args<3) {
+        throw std::invalid_argument("");
+    }
+    time= stoi(arguments[1]);
+    if(time<=0)
+    {
+        throw std::invalid_argument("");
+    }
+
+}catch (std::invalid_argument& ia)
+{
+    std::cerr<<"smash error: timeout: invalid arguments"<<endl;
+    return;
+}
+    char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
+    while(i < num_of_args) {
+        strcat(cmd_modified_line, std::string(arguments[i]).c_str());
+        strcat(cmd_modified_line, " ");
+        i++;
+    }
+    pid_t p = fork();
+
+    if (p == -1) {
+        perror("smash error: fork failed");
+        return;
+    }
+    if (p == 0) {
+        //son process
+        if(setpgrp()==-1)
+        {
+            perror("smash error: setpgrp failed");
+            return;
+        }
+        strcpy(cmd_modified_line,_trim(cmd_line).c_str());
+        if (_isBackgroundComamnd(cmd_line)) {
+            _removeBackgroundSign(cmd_modified_line);
+        }
+        strcpy(cmd_modified_line,_trim(cmd_modified_line).c_str());
+        char * full_array []= {(char*)"/bin/bash", (char*)"-c",(char*)cmd_modified_line, nullptr};
+        if(execv("/bin/bash", full_array)== -1)
+        {
+            perror("smash error: execv failed");
+            return;
+        }
+    }
+    else
+    {
+
+        smash.timeOut.push_back(new AlarmNote(p,time, _trimr(cmd_line).c_str()));
+        int lowest_alarm=2147483647;
+        for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); ++it) {
+            if((*it)->duration-difftime(std::time(nullptr), (*it)->insert_time)<lowest_alarm)
+            {
+                lowest_alarm=(*it)->duration-difftime(std::time(nullptr), (*it)->insert_time);
+            }
+        }
+        alarm(lowest_alarm);
+        if (_isBackgroundComamnd(cmd_line)) {
+            strcpy(cmd_modified_line,cmd_line);
+            strcpy(cmd_modified_line,_trimr(cmd_modified_line).c_str());
+            smash.jobsList.addJob(cmd_modified_line, p, bg);
+            smash.fg_pid=EMPTY_FG;
+        }
+        else {
+            smash.fg_pid=p;
+            if(waitpid(p, nullptr, WUNTRACED)==-1)
+            {
+                perror("smash error: waitpid failed");
+                return;
+            }
+            smash.fg_pid = EMPTY_FG;
+        }
+    }
+
+}
+
+    AlarmNote::AlarmNote( int pid,int duration,const char* discript):pid(pid),duration(duration),insert_time(time(nullptr))
+    {
+        std::string help(discript);
+       this->discript = new char[help.length()];
+        strcpy( this->discript, discript);
+    }

@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <cctype>
+#include <list>
+#include <unistd.h>
 #define COMMAND_ARGS_MAX_LENGTH (200)
 #define COMMAND_MAX_ARGS (20)
 
@@ -93,7 +95,16 @@ public:
     virtual ~QuitCommand() {}
     void execute() override;
 };
+class AlarmNote {
+public:
+    int pid;
+    int duration;
 
+    char* discript;
+    time_t insert_time;
+    AlarmNote( int pid,int duration,const char* discript);
+
+};
 enum JobStatus{bg=0, stopped=1};
 class JobsList {
 public:
@@ -173,7 +184,12 @@ public:
     ~TouchCommand() override=default;
     void execute() override;
 };
-
+class TimeOut : public BuiltInCommand {
+public:
+    explicit TimeOut(const char* cmd_line);
+    ~TimeOut() override=default;
+    void execute() override;
+};
 
 class SmallShell {
 private:
@@ -182,6 +198,7 @@ private:
 public:
     std::string prompt;
     JobsList jobsList;
+    std::list<AlarmNote *> timeOut;
     std::string last_working_directory;
     //std::string current_working_directory;
     int pid; //the pid of smash
@@ -193,6 +210,7 @@ public:
 //    std::string command1;
 //    std::string command2;
     Command* curr_cmd;
+
     Command *CreateCommand(const char * cmd_line);
     SmallShell(SmallShell const&)      = delete; // disable copy ctor
     void operator=(SmallShell const&)  = delete; // disable = operator
