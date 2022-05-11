@@ -859,11 +859,17 @@ void TouchCommand::execute() {
         perror("smash error: touch: invalid arguments");
         return;
     }
-    int secs,mins,hours,days,monts,years;
+    int secs,mins,hours,days,months,years;
     std::stringstream ss(this->arguments[2]);
-    ss>>secs>>mins>>hours>>days>>monts>>years;
-    tm *tm2=new struct tm();
-    tm2->tm_sec=secs;
+    
+    //ss>>secs>>mins>>hours>>days>>months>>years;
+    struct tm tm1;
+    tm1.tm_sec = secs;
+    tm1.tm_min = mins;
+    tm1.tm_hour = hours;
+    tm1.tm_mday = days;
+    tm1.tm_mon = months - 1;
+    tm1.tm_year = years - 1900;
 
     tm *tm1=new struct tm;
     strptime(this->arguments[2],"%d:%d:%d:%d:%d:%d:%d",tm1);
