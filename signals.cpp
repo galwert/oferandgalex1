@@ -76,14 +76,17 @@ void alarmHandler(int sig_num) {
         if(difftime(time(nullptr), (*it)->insert_time)>=(*it)->duration)
         {
             cout << "smash: "<<(*it)->discript<<" timed out!" << endl;
-            int job_id=smash.jobsList.getJobByPid((*it)->pid);
-            if (smash.jobsList.List->at(job_id)== nullptr) {
-                smash.timeOut.erase(it);
-                break;
+            int res=waitpid((*it)->pid,nullptr,WNOHANG);
+            if(res<0)
+            {
+              continue;
             }
-            if(kill((*it)->pid, SIGKILL) == -1){
-                perror("smash error: kill failed");
-                return;
+            if(res==0)
+            {
+              if(kill((*it)->pid, SIGKILL) == -1){
+                  perror("smash error: kill failed");
+                  return;
+              }
             }
 
             smash.timeOut.erase(it);

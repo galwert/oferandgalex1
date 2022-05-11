@@ -856,7 +856,7 @@ TouchCommand::TouchCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
 void TouchCommand::execute() {
     if(this->num_of_args!=3)
     {
-        perror("smash error: touch: invalid arguments");
+        cerr << "smash error: touch: invalid arguments" << endl;
         return;
     }
     int secs,mins,hours,days,months,years;
@@ -870,6 +870,9 @@ void TouchCommand::execute() {
     tm1.tm_mday = days;
     tm1.tm_mon = months - 1;
     tm1.tm_year = years - 1900;
+    tm1.tm_isdst=-1;
+    tm1.tm_yday=-1;
+    tm1.tm_wday=-1;
 
     time_t tm_ob = mktime(&tm1);
     struct utimbuf buf;
@@ -877,7 +880,7 @@ void TouchCommand::execute() {
     buf.modtime = tm_ob;
     if(utime(this->arguments[1],&buf)==-1)
     {
-        perror("smash error: write failed");
+        perror("smash error: utime failed");
         return;
     }
 }

@@ -1,17 +1,17 @@
 [
 {
   "directory": "/home/ofernis/oferandgalex1/build",
-  "command": "/usr/bin/g++    -g   -std=gnu++14 -o CMakeFiles/smash.dir/signals.cpp.o -c /home/ofernis/oferandgalex1/signals.cpp",
+  "command": "/usr/bin/g++    -g   -std=gnu++11 -o CMakeFiles/smash.dir/smash.cpp.o -c /home/ofernis/oferandgalex1/smash.cpp",
+  "file": "/home/ofernis/oferandgalex1/smash.cpp"
+},
+{
+  "directory": "/home/ofernis/oferandgalex1/build",
+  "command": "/usr/bin/g++    -g   -std=gnu++11 -o CMakeFiles/smash.dir/signals.cpp.o -c /home/ofernis/oferandgalex1/signals.cpp",
   "file": "/home/ofernis/oferandgalex1/signals.cpp"
 },
 {
   "directory": "/home/ofernis/oferandgalex1/build",
-  "command": "/usr/bin/g++    -g   -std=gnu++14 -o CMakeFiles/smash.dir/Commands.cpp.o -c /home/ofernis/oferandgalex1/Commands.cpp",
+  "command": "/usr/bin/g++    -g   -std=gnu++11 -o CMakeFiles/smash.dir/Commands.cpp.o -c /home/ofernis/oferandgalex1/Commands.cpp",
   "file": "/home/ofernis/oferandgalex1/Commands.cpp"
-},
-{
-  "directory": "/home/ofernis/oferandgalex1/build",
-  "command": "/usr/bin/g++    -g   -std=gnu++14 -o CMakeFiles/smash.dir/smash.cpp.o -c /home/ofernis/oferandgalex1/smash.cpp",
-  "file": "/home/ofernis/oferandgalex1/smash.cpp"
 }
 ]
