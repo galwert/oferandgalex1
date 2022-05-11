@@ -863,19 +863,19 @@ void TouchCommand::execute() {
     std::stringstream ss(this->arguments[2]);
     char seperator = ':';
     ss>>secs>>seperator>>mins>>seperator>>hours>>seperator>>days>>seperator>>months>>seperator>>years;
-    struct tm* tm1 = new tm();
-    tm1->tm_sec = secs;
-    tm1->tm_min = mins;
-    tm1->tm_hour = hours;
-    tm1->tm_mday = days;
-    tm1->tm_mon = months - 1;
-    tm1->tm_year = years - 1900;
+    struct tm tm1;
+    tm1.tm_sec = secs;
+    tm1.tm_min = mins;
+    tm1.tm_hour = hours;
+    tm1.tm_mday = days;
+    tm1.tm_mon = months - 1;
+    tm1.tm_year = years - 1900;
 
-    time_t tm_ob = mktime(tm1);
-    utimbuf *buf{};
-    buf->actime= (tm_ob);
-    buf->modtime= (tm_ob);
-    if(utime(this->arguments[1],buf)==-1)
+    time_t tm_ob = mktime(&tm1);
+    struct utimbuf buf;
+    buf.actime = tm_ob;
+    buf.modtime = tm_ob;
+    if(utime(this->arguments[1],&buf)==-1)
     {
         perror("smash error: write failed");
         return;
@@ -885,7 +885,7 @@ void TouchCommand::execute() {
 BuiltInCommand::BuiltInCommand(const char *cmd_line) : Command(cmd_line) {
 
 }
-///////
+
 TimeOut::TimeOut(const char *cmd_line) : BuiltInCommand(cmd_line) {
 
 }

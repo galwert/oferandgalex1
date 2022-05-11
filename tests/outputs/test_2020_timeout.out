@@ -10,16 +10,5 @@ smash> 0
 2
 smash> smash: got ctrl-C
 smash> smash> 0
-[1] timeout 3 ../my_sleep 4 & : 13697 1 secs
-smash> 2
-smash: got ctrl-C
-smash> smash> smash> smash> smash> smash: got ctrl-C
-smash> smash> smash> smash> [1] timeout 5 sleep 100& : 14535 0 secs
-[2] timeout 4 sleep 200& : 14536 0 secs
-[3] timeout 2 sleep 300& : 14537 0 secs
-[4] timeout 7 sleep 400& : 14538 0 secs
-smash> smash> smash> smash: got ctrl-C
-smash: process 14844 was killed
-smash> smash> smash: got ctrl-C
-smash: process 14979 was killed
-smash> smash: sending SIGKILL signal to 0 jobs:
+[1] timeout 3 ../my_sleep 4 & : 22045 1 secs
+smash> 

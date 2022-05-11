@@ -51,6 +51,8 @@ Commands.h
 /home/ofernis/oferandgalex1/Commands.h
 string.h
 -
+sys/wait.h
+-
 
 /home/ofernis/oferandgalex1/signals.h
 

@@ -76,8 +76,6 @@ void alarmHandler(int sig_num) {
         if(difftime(time(nullptr), (*it)->insert_time)>=(*it)->duration)
         {
             cout << "smash: "<<(*it)->discript<<" timed out!" << endl;
-
-            //int wait_res=waitpid((*it)->pid, nullptr, WNOHANG);
             int job_id=smash.jobsList.getJobByPid((*it)->pid);
             if (smash.jobsList.List->at(job_id)== nullptr) {
                 smash.timeOut.erase(it);

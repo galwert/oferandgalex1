@@ -57,33 +57,9 @@ include CMakeFiles/smash.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/smash.dir/flags.make
 
-CMakeFiles/smash.dir/smash.cpp.o: CMakeFiles/smash.dir/flags.make
-CMakeFiles/smash.dir/smash.cpp.o: ../smash.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ofernis/oferandgalex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/smash.dir/smash.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/smash.dir/smash.cpp.o -c /home/ofernis/oferandgalex1/smash.cpp
-
-CMakeFiles/smash.dir/smash.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smash.dir/smash.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ofernis/oferandgalex1/smash.cpp > CMakeFiles/smash.dir/smash.cpp.i
-
-CMakeFiles/smash.dir/smash.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smash.dir/smash.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ofernis/oferandgalex1/smash.cpp -o CMakeFiles/smash.dir/smash.cpp.s
-
-CMakeFiles/smash.dir/smash.cpp.o.requires:
-
-.PHONY : CMakeFiles/smash.dir/smash.cpp.o.requires
-
-CMakeFiles/smash.dir/smash.cpp.o.provides: CMakeFiles/smash.dir/smash.cpp.o.requires
-	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/smash.cpp.o.provides.build
-.PHONY : CMakeFiles/smash.dir/smash.cpp.o.provides
-
-CMakeFiles/smash.dir/smash.cpp.o.provides.build: CMakeFiles/smash.dir/smash.cpp.o
-
-
 CMakeFiles/smash.dir/signals.cpp.o: CMakeFiles/smash.dir/flags.make
 CMakeFiles/smash.dir/signals.cpp.o: ../signals.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ofernis/oferandgalex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/smash.dir/signals.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ofernis/oferandgalex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/smash.dir/signals.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/smash.dir/signals.cpp.o -c /home/ofernis/oferandgalex1/signals.cpp
 
 CMakeFiles/smash.dir/signals.cpp.i: cmake_force
@@ -107,7 +83,7 @@ CMakeFiles/smash.dir/signals.cpp.o.provides.build: CMakeFiles/smash.dir/signals.
 
 CMakeFiles/smash.dir/Commands.cpp.o: CMakeFiles/smash.dir/flags.make
 CMakeFiles/smash.dir/Commands.cpp.o: ../Commands.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ofernis/oferandgalex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/smash.dir/Commands.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ofernis/oferandgalex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/smash.dir/Commands.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/smash.dir/Commands.cpp.o -c /home/ofernis/oferandgalex1/Commands.cpp
 
 CMakeFiles/smash.dir/Commands.cpp.i: cmake_force
@@ -129,31 +105,55 @@ CMakeFiles/smash.dir/Commands.cpp.o.provides: CMakeFiles/smash.dir/Commands.cpp.
 CMakeFiles/smash.dir/Commands.cpp.o.provides.build: CMakeFiles/smash.dir/Commands.cpp.o
 
 
+CMakeFiles/smash.dir/smash.cpp.o: CMakeFiles/smash.dir/flags.make
+CMakeFiles/smash.dir/smash.cpp.o: ../smash.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ofernis/oferandgalex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/smash.dir/smash.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/smash.dir/smash.cpp.o -c /home/ofernis/oferandgalex1/smash.cpp
+
+CMakeFiles/smash.dir/smash.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smash.dir/smash.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ofernis/oferandgalex1/smash.cpp > CMakeFiles/smash.dir/smash.cpp.i
+
+CMakeFiles/smash.dir/smash.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smash.dir/smash.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ofernis/oferandgalex1/smash.cpp -o CMakeFiles/smash.dir/smash.cpp.s
+
+CMakeFiles/smash.dir/smash.cpp.o.requires:
+
+.PHONY : CMakeFiles/smash.dir/smash.cpp.o.requires
+
+CMakeFiles/smash.dir/smash.cpp.o.provides: CMakeFiles/smash.dir/smash.cpp.o.requires
+	$(MAKE) -f CMakeFiles/smash.dir/build.make CMakeFiles/smash.dir/smash.cpp.o.provides.build
+.PHONY : CMakeFiles/smash.dir/smash.cpp.o.provides
+
+CMakeFiles/smash.dir/smash.cpp.o.provides.build: CMakeFiles/smash.dir/smash.cpp.o
+
+
 # Object files for target smash
 smash_OBJECTS = \
-"CMakeFiles/smash.dir/smash.cpp.o" \
 "CMakeFiles/smash.dir/signals.cpp.o" \
-"CMakeFiles/smash.dir/Commands.cpp.o"
+"CMakeFiles/smash.dir/Commands.cpp.o" \
+"CMakeFiles/smash.dir/smash.cpp.o"
 
 # External object files for target smash
 smash_EXTERNAL_OBJECTS =
 
-../smash: CMakeFiles/smash.dir/smash.cpp.o
-../smash: CMakeFiles/smash.dir/signals.cpp.o
-../smash: CMakeFiles/smash.dir/Commands.cpp.o
-../smash: CMakeFiles/smash.dir/build.make
-../smash: CMakeFiles/smash.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ofernis/oferandgalex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../smash"
+smash: CMakeFiles/smash.dir/signals.cpp.o
+smash: CMakeFiles/smash.dir/Commands.cpp.o
+smash: CMakeFiles/smash.dir/smash.cpp.o
+smash: CMakeFiles/smash.dir/build.make
+smash: CMakeFiles/smash.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ofernis/oferandgalex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable smash"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/smash.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/smash.dir/build: ../smash
+CMakeFiles/smash.dir/build: smash
 
 .PHONY : CMakeFiles/smash.dir/build
 
-CMakeFiles/smash.dir/requires: CMakeFiles/smash.dir/smash.cpp.o.requires
 CMakeFiles/smash.dir/requires: CMakeFiles/smash.dir/signals.cpp.o.requires
 CMakeFiles/smash.dir/requires: CMakeFiles/smash.dir/Commands.cpp.o.requires
+CMakeFiles/smash.dir/requires: CMakeFiles/smash.dir/smash.cpp.o.requires
 
 .PHONY : CMakeFiles/smash.dir/requires
 
