@@ -38,7 +38,6 @@ void ctrlZHandler(int sig_num) {
       strcpy(cmd_modified_line,smash.curr_cmd->cmd_line);
       strcpy(cmd_modified_line,_trim1(cmd_modified_line).c_str());
       smash.jobsList.addJob(cmd_modified_line, smash.fg_pid, stopped);
-      //smash.jobsList.addJob(smash.curr_cmd->cmd_line, smash.fg_pid, stopped);
   }
     job_id=smash.jobsList.getJobByPid(smash.fg_pid);
     smash.jobsList.List->at(job_id)->StopJob();
@@ -56,7 +55,7 @@ void ctrlCHandler(int sig_num) {
   if (smash.fg_pid == EMPTY_FG) {
     return;
   }
-  if (kill(smash.fg_pid,SIGKILL) == -1) { //ch name
+  if (kill(smash.fg_pid,SIGKILL) == -1) {
     perror("smash error: kill failed");
     return;
   }
@@ -72,7 +71,6 @@ void ctrlCHandler(int sig_num) {
 void alarmHandler(int sig_num) {
   cout << "smash: got an alarm" << endl;
     SmallShell& smash = SmallShell::getInstance();
-    //smash.jobsList.removeFinishedJobs();
     for (auto it = smash.timeOut.begin(); it != smash.timeOut.end(); it++)
     {
       if(difftime(time(nullptr), (*it)->insert_time) >= (*it)->duration)
@@ -91,7 +89,6 @@ void alarmHandler(int sig_num) {
                   cout << "smash: " << (*it)->discript << " timed out!" << endl;
               }
           }
-          
           smash.timeOut.erase(it);
           it = smash.timeOut.begin();
       }

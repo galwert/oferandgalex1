@@ -117,7 +117,6 @@ public:
         char * discript;
         time_t insert_time;
         time_t stopped_time;
-        //JobEntry(Command* cmd, int pid,JobStatus isStopped);
         JobEntry()= default;
         void StopJob();
         void ContinueJob();
@@ -201,15 +200,8 @@ public:
     JobsList jobsList;
     std::list<AlarmNote *> timeOut;
     std::string last_working_directory;
-    //std::string current_working_directory;
     int pid; //the pid of smash
     int fg_pid; //the pid of foreground process
-    //int fg_job_id; //the job id of foreground process
-//    bool redirect_mode;
-//    bool append_mode;
-//    bool pipe_mode;
-//    std::string command1;
-//    std::string command2;
     Command* curr_cmd;
 
     Command *CreateCommand(const char * cmd_line);
