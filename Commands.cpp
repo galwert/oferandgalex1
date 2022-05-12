@@ -763,18 +763,18 @@ void TailCommand::execute() {
     string text_file;
     int lines_number;
     try{
-        if(num_of_args==3) {
-             lines_number =(-1)* stoi(this->arguments[1]);
-             if(lines_number<0)
-             {
-                 throw std::invalid_argument("");
-             }
-             text_file=this->arguments[2];
+        if(num_of_args == 3) {
+            lines_number = (-1)* stoi(this->arguments[1]);
+            if(lines_number < 0)
+            {
+                throw std::invalid_argument("");
+            }
+            text_file=this->arguments[2];
         }
-        else if(num_of_args==2)
+        else if(num_of_args == 2)
         {
-            lines_number=10;
-            text_file=this->arguments[1];
+            lines_number = 10;
+            text_file = this->arguments[1];
         }
         else
         {
@@ -787,25 +787,31 @@ void TailCommand::execute() {
         return;
     }
 
-    int fd=open(text_file.c_str(),O_RDONLY,0655);
-    if(fd==-1)
+    int fd=open(text_file.c_str(), O_RDONLY);
+    if(fd == -1)
     {
         perror("smash error: open failed");
         return;
     }
-    int init_pos = lseek(fd,0,SEEK_END);
-    if(init_pos == -1) 
+    off_t bgn_pos = lseek(fd, 0, SEEK_CUR);
+    if(bgn_pos == -1) 
     {
         perror("smash error: lseek failed");
         return;
     }
-    else if(init_pos == 0)
+    off_t end_pos = lseek(fd, 0, SEEK_END);
+    if(end_pos == -1) 
+    {
+        perror("smash error: lseek failed");
+        return;
+    }
+    if (bgn_pos == end_pos) //the current file is empty
     {
         return;
     }
     char * buffer = new char[1];
-    int count_of_chars=0, count_of_lines=0;
-    while(count_of_lines!=lines_number)
+    int count_of_chars = 0, count_of_lines = 0;
+    while(count_of_lines != lines_number)
     {
         int dist_from_bgn_of_file = lseek(fd, --count_of_chars, SEEK_END);
         if (dist_from_bgn_of_file == -1)
@@ -815,17 +821,17 @@ void TailCommand::execute() {
         }
         else if (dist_from_bgn_of_file > 0)
         {
-            if(read(fd,buffer,1)==-1)
+            if(read(fd,buffer, 1) == -1)
             {
                 perror("smash error: read failed");
                 return;
             }
-            if(*buffer=='\n') //strcmp(buffer,"\n") why doesn't work??
+            if(*buffer == '\n')
             {
-                count_of_lines++;
+                count_of_lines += (count_of_chars == -1) ? 0 : 1;
             }
         }
-        else
+        else //reached beginning of file
         {
             break;
         }
@@ -833,23 +839,23 @@ void TailCommand::execute() {
     long read1;
     while (true)
     {
-       read1=read(fd,buffer,1);
-        if(read1==0)
+       read1 = read(fd, buffer, 1);
+        if(read1 == 0)
         {
             break;
         }
-        if(read1==-1)
+        if(read1 == -1)
         {
             perror("smash error: read failed");
             return;
         }
-        if(write(1,buffer,1)!=1)
+        if(write(1, buffer, 1) != 1)
         {
             perror("smash error: write failed");
             return;
         }
     }
-    if(close(fd)==-1)
+    if(close(fd) == -1)
     {
         perror("smash error: close failed");
         return;
