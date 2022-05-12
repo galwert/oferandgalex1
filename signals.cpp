@@ -4,6 +4,8 @@
 #include "Commands.h"
 #include <string.h>
 #include <sys/wait.h>
+#include <errno.h>
+
 using namespace std;
 const std::string WHITESPACE = " \n\r\t\f\v";
 string _ltrim1(const std::string& s)
@@ -71,43 +73,38 @@ void alarmHandler(int sig_num) {
   cout << "smash: got an alarm" << endl;
     SmallShell& smash = SmallShell::getInstance();
     //smash.jobsList.removeFinishedJobs();
-    for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); it++)
+    for (auto it = smash.timeOut.begin(); it != smash.timeOut.end(); it++)
     {
-        if(difftime(time(nullptr), (*it)->insert_time)>=(*it)->duration)
-        {
-            int job_id=smash.jobsList.getJobByPid((*it)->pid);
-            int res=waitpid((*it)->pid,nullptr,WNOHANG);
-            if(job_id!=0&&smash.jobsList.List->at(job_id)!= nullptr)
-            {
-                smash.jobsList.List->at(job_id)= nullptr;
-            }
-            if(res<0)
-            {
-                smash.timeOut.erase(it);
-                it = smash.timeOut.begin();
-              continue;
-            }
-            if(res==0)
-            {
-              if(kill((*it)->pid, SIGKILL) == -1){
-                  perror("smash error: kill failed");
-                  return;
-              } else
-              {
-                  cout << "smash: " << (*it)->discript << " timed out!" << endl;
-              }
-            }
+      if(difftime(time(nullptr), (*it)->insert_time) >= (*it)->duration)
+      {
+          int job_id = smash.jobsList.getJobByPid((*it)->pid);
+          int res = waitpid((*it)->pid, nullptr, WNOHANG);
+          if(kill((*it)->pid, SIGKILL) == 0)
+          {
+            cout << "smash: " << (*it)->discript << " timed out!" << endl;
+          } 
+          if((job_id != 0) && (smash.jobsList.List->at(job_id) != nullptr))
+          {
+            smash.jobsList.List->at(job_id) = nullptr;
+          }
+          if(res < 0)
+          {
             smash.timeOut.erase(it);
             it = smash.timeOut.begin();
-        }
-    }
-    int lowest_alarm=MAX_INT;
-    for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); it++) {
-        if((*it)->duration-difftime(time(nullptr), (*it)->insert_time)<lowest_alarm)
-        {
-            lowest_alarm=(*it)->duration-difftime(time(nullptr), (*it)->insert_time);
-            }
-        }
-    alarm(lowest_alarm);
-    }
-
+            continue;
+          }
+          
+          smash.timeOut.erase(it);
+          it = smash.timeOut.begin();
+      }
+  }
+  int lowest_alarm = MAX_INT;
+  for (auto it = smash.timeOut.begin(); it != smash.timeOut.end(); it++) 
+  {
+      if((*it)->duration - difftime(time(nullptr), (*it)->insert_time) < lowest_alarm)
+      {
+        lowest_alarm = (*it)->duration - difftime(time(nullptr), (*it)->insert_time);
+      }
+  }
+  alarm(lowest_alarm);
+}

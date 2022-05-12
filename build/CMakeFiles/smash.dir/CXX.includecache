@@ -53,6 +53,8 @@ string.h
 -
 sys/wait.h
 -
+errno.h
+-
 
 /home/ofernis/oferandgalex1/signals.h
 

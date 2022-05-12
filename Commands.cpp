@@ -871,16 +871,16 @@ void TouchCommand::execute() {
 TimeOut::TimeOut(const char *cmd_line) : BuiltInCommand(cmd_line) {}
 
 void TimeOut::execute() {
-    int timeout,i=2;
-    string cmd_line_s=string(cmd_line);
+    int timeout, i = 2;
+    string cmd_line_s = string(cmd_line);
     SmallShell& smash = SmallShell::getInstance();
 try
 {
     if(num_of_args<3) {
         throw std::invalid_argument("");
     }
-    timeout= stoi(arguments[1]);
-    if(timeout<=0)
+    timeout = stoi(arguments[1]);
+    if(timeout <= 0)
     {
         throw std::invalid_argument("");
     }
@@ -923,13 +923,13 @@ try
     }
     else
     {
-
         smash.timeOut.push_back(new AlarmNote(p,timeout, _trimr(cmd_line).c_str()));
-        int lowest_alarm=timeout;
-        for (auto it = smash.timeOut.begin(); it !=smash.timeOut.end(); ++it) {
-            if((*it)->duration-difftime(std::time(nullptr), (*it)->insert_time)<lowest_alarm)
+        int lowest_alarm = timeout;
+        for (auto it = smash.timeOut.begin(); it != smash.timeOut.end(); ++it) 
+        {
+            if((*it)->duration - difftime(std::time(nullptr), (*it)->insert_time) < lowest_alarm)
             {
-                lowest_alarm=(*it)->duration-difftime(std::time(nullptr), (*it)->insert_time);
+                lowest_alarm = (*it)->duration - difftime(std::time(nullptr), (*it)->insert_time);
             }
         }
         alarm(lowest_alarm);
@@ -940,8 +940,8 @@ try
             smash.fg_pid=EMPTY_FG;
         }
         else {
-            smash.fg_pid=p;
-            if(waitpid(p, nullptr, WUNTRACED)==-1)
+            smash.fg_pid = p;
+            if(waitpid(p, nullptr, WUNTRACED) == -1)
             {
                 perror("smash error: waitpid failed");
                 return;
@@ -949,7 +949,6 @@ try
             smash.fg_pid = EMPTY_FG;
         }
     }
-
 }
 
 AlarmNote::AlarmNote( int pid,int duration,const char* discript):pid(pid),duration(duration),insert_time(time(nullptr))
