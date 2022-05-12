@@ -181,15 +181,15 @@ Command::Command(const char* cmd_line) : cmd_line(cmd_line) {
     for (int i = 0; i < num_of_args; ++i) {
         arguments[i] = args_array[i];
     }
-    // SmallShell::getInstance().cmd_line = cmd_line;
 }
 
 Command::~Command() {
     for (int i = 0; i < num_of_args; ++i) {
         delete[] arguments[i];
     }
-    // SmallShell::getInstance().fg_pid = EMPTY_FG;
 }
+
+BuiltInCommand::BuiltInCommand(const char *cmd_line) : Command(cmd_line) {}
 
 ChangePrompt::ChangePrompt(const char *cmd_line) : BuiltInCommand(cmd_line) {}
 
@@ -269,7 +269,6 @@ void JobsList::printJobsList() {
     }
 }
 
-
 int JobsList::getLastJob() {
     int max=0;
     for(int i=1;i<=MAX_NUM_OF_JOBS;i++) {
@@ -294,16 +293,6 @@ int JobsList::getLastStoppedJob() {
     return max;
 }
 
-
-//JobsList::JobEntry::JobEntry(Command *cmd,int pid,JobStatus isStopped) {
-//    this->job_pid=pid;
-//    this->discript=cmd->cmd_line;
-//    this->job_status=isStopped;
-//    this->insert_time= time(nullptr);
-//    this->stopped_time= time(nullptr);
-//
-//}
-
 void JobsList::JobEntry::StopJob() {
     this->job_status=stopped;
     this->stopped_time=time(nullptr);
@@ -317,7 +306,7 @@ void JobsList::JobEntry::ContinueJob() {
 GetCurrDirCommand::GetCurrDirCommand(const char* cmd_line) : BuiltInCommand(cmd_line) {}
 
 void GetCurrDirCommand::execute() {
-    char* dir = get_current_dir_name(); //change to getcwd?
+    char* dir = get_current_dir_name();
     if (dir != nullptr) {
         cout << dir << endl;
         delete dir;
@@ -367,13 +356,10 @@ void JobsList::addJob(const char * cmd,int pid, JobStatus isStopped) {
     list->at(job_id) = new JobEntry();
     list->at(job_id)->job_pid = pid;
     list->at(job_id)->job_id = job_id;
-    //char *new_dis=(char*)malloc(sizeof(char )*COMMAND_ARGS_MAX_LENGTH);
 
     string help(cmd);
     list->at(job_id)->discript = new char[help.length()];
     strcpy( list->at(job_id)->discript, cmd);
-    //list->at(job_id)->discript=new_dis;
-    //string new_dis=string (cmd);
     list->at(job_id)->job_status=isStopped;
     list->at(job_id)->insert_time = time(nullptr); //add stop_time
 }
@@ -399,16 +385,14 @@ int JobsList::getJobByPid(int pid) {
     JobEntry* current_job;
     for (int i = 1; i <= MAX_NUM_OF_JOBS; i++) {
         current_job = list->at(i);
-        if (current_job!= nullptr&&pid== current_job->job_pid) {
+        if ((current_job != nullptr) && (pid == current_job->job_pid)) {
             return i;
         }
     }
     return 0;
 }
 
-ForegroundCommand::ForegroundCommand(const char *cmd_line): BuiltInCommand(cmd_line) {
-
-}
+ForegroundCommand::ForegroundCommand(const char *cmd_line): BuiltInCommand(cmd_line) {}
 
 void ForegroundCommand::execute() {
     SmallShell &smash = SmallShell::getInstance();
@@ -463,10 +447,7 @@ void ForegroundCommand::execute() {
 
 }
 
-BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_line) {
-
-
-}
+BackgroundCommand::BackgroundCommand(const char *cmd_line): BuiltInCommand(cmd_line) {}
 
 void BackgroundCommand::execute() {
     SmallShell &smash = SmallShell::getInstance();
@@ -512,9 +493,7 @@ void BackgroundCommand::execute() {
     job->job_status = bg;
     cout << job->discript << " : " << job->job_pid << endl;
 }
-JobsCommand::JobsCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
-
-}
+JobsCommand::JobsCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {}
 
 void JobsCommand::execute() {
     SmallShell &smash = SmallShell::getInstance();
@@ -611,12 +590,9 @@ void ExternalCommand::execute()
         smash.fg_pid = EMPTY_FG;
         }
     }
-
-
-    }
-
-RedirectionCommand::RedirectionCommand(const char* cmd_line) : Command(cmd_line) {
 }
+
+RedirectionCommand::RedirectionCommand(const char* cmd_line) : Command(cmd_line) {}
 
 void RedirectionCommand::execute() {
     SmallShell &smash = SmallShell::getInstance();
@@ -666,9 +642,7 @@ void RedirectionCommand::execute() {
     }
 }
 
-PipeCommand::PipeCommand(const char *cmd_line) : Command(cmd_line) {
-
-}
+PipeCommand::PipeCommand(const char *cmd_line) : Command(cmd_line) {}
 
 void PipeCommand::execute() {
     Command *cmd1;
@@ -755,9 +729,7 @@ void PipeCommand::execute() {
 
 }
 
-TailCommand::TailCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
-
-}
+TailCommand::TailCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {}
 
 void TailCommand::execute() {
     string text_file;
@@ -862,9 +834,7 @@ void TailCommand::execute() {
     }
 }
 
-TouchCommand::TouchCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {
-
-}
+TouchCommand::TouchCommand(const char *cmd_line) : BuiltInCommand(cmd_line) {}
 
 void TouchCommand::execute() {
     if(this->num_of_args!=3)
@@ -898,13 +868,7 @@ void TouchCommand::execute() {
     }
 }
 
-BuiltInCommand::BuiltInCommand(const char *cmd_line) : Command(cmd_line) {
-
-}
-
-TimeOut::TimeOut(const char *cmd_line) : BuiltInCommand(cmd_line) {
-
-}
+TimeOut::TimeOut(const char *cmd_line) : BuiltInCommand(cmd_line) {}
 
 void TimeOut::execute() {
     int timeout,i=2;
@@ -988,9 +952,9 @@ try
 
 }
 
-    AlarmNote::AlarmNote( int pid,int duration,const char* discript):pid(pid),duration(duration),insert_time(time(nullptr))
-    {
-        std::string help(discript);
-       this->discript = new char[help.length()];
-        strcpy( this->discript, discript);
-    }
+AlarmNote::AlarmNote( int pid,int duration,const char* discript):pid(pid),duration(duration),insert_time(time(nullptr))
+{
+    std::string help(discript);
+    this->discript = new char[help.length()];
+    strcpy( this->discript, discript);
+}
