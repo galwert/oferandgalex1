@@ -79,19 +79,17 @@ void alarmHandler(int sig_num) {
       {
           int job_id = smash.jobsList.getJobByPid((*it)->pid);
           int res = waitpid((*it)->pid, nullptr, WNOHANG);
-          if(kill((*it)->pid, SIGKILL) == 0)
-          {
-            cout << "smash: " << (*it)->discript << " timed out!" << endl;
-          } 
+
           if((job_id != 0) && (smash.jobsList.List->at(job_id) != nullptr))
           {
             smash.jobsList.List->at(job_id) = nullptr;
           }
-          if(res < 0)
+          if(res <= 0)
           {
-            smash.timeOut.erase(it);
-            it = smash.timeOut.begin();
-            continue;
+              if(kill((*it)->pid, SIGKILL) == 0)
+              {
+                  cout << "smash: " << (*it)->discript << " timed out!" << endl;
+              }
           }
           
           smash.timeOut.erase(it);

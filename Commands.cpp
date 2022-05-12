@@ -891,6 +891,10 @@ try
     return;
 }
     char cmd_modified_line[COMMAND_ARGS_MAX_LENGTH];
+for(char & i : cmd_modified_line)
+{
+    i='\0';
+}
     while(i < num_of_args) {
         strcat(cmd_modified_line, std::string(arguments[i]).c_str());
         strcat(cmd_modified_line, " ");
@@ -909,7 +913,6 @@ try
             perror("smash error: setpgrp failed");
             return;
         }
-        strcpy(cmd_modified_line,_trim(cmd_line).c_str());
         if (_isBackgroundComamnd(cmd_line)) {
             _removeBackgroundSign(cmd_modified_line);
         }
