@@ -4,7 +4,6 @@
 #include "Commands.h"
 #include <string.h>
 #include <sys/wait.h>
-#include <errno.h>
 
 using namespace std;
 const std::string WHITESPACE = " \n\r\t\f\v";

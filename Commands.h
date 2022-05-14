@@ -96,17 +96,18 @@ public:
     virtual ~QuitCommand() {}
     void execute() override;
 };
+
 class AlarmNote {
 public:
     int pid;
     int duration;
-
     char* discript;
     time_t insert_time;
     AlarmNote( int pid,int duration,const char* discript);
-
 };
-enum JobStatus{bg=0, stopped=1};
+
+enum JobStatus{bg = 0, stopped = 1};
+
 class JobsList {
 public:
     class JobEntry {
@@ -117,7 +118,7 @@ public:
         char * discript;
         time_t insert_time;
         time_t stopped_time;
-        JobEntry()= default;
+        JobEntry() = default;
         void StopJob();
         void ContinueJob();
     };
@@ -130,10 +131,9 @@ public:
     void printJobsList();
     void killAllJobs();
     void removeFinishedJobs();
-    JobEntry * getJobById(int jobId);
+    JobEntry* getJobById(int jobId);
     int getJobByPid(int pid);
     void removeJobById(int jobId);
-
     int getLastJob();
     int getLastStoppedJob();
     // TODO: Add extra methods or modify exisitng ones as needed
@@ -181,13 +181,13 @@ public:
 class TouchCommand : public BuiltInCommand {
 public:
     explicit TouchCommand(const char* cmd_line);
-    ~TouchCommand() override=default;
+    ~TouchCommand() override = default;
     void execute() override;
 };
 class TimeOut : public BuiltInCommand {
 public:
     explicit TimeOut(const char* cmd_line);
-    ~TimeOut() override=default;
+    ~TimeOut() override = default;
     void execute() override;
 };
 
